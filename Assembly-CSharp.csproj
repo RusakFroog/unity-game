@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{DDFBC18F-9396-3137-9CFE-DEB2CDB74636}</ProjectGuid>
+    <ProjectGuid>{81499F24-4FAE-3BA0-D105-6C4FDF7F9372}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -55,11 +55,13 @@
     <UnityVersion>2022.3.24f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="D:\Programs\VS Studio\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="D:\Programs\UnityHub\Engine\2022.3.24f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="D:\Programs\UnityHub\Engine\2022.3.24f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Source\Core\Utils\Util.cs" />
+    <Compile Include="Assets\Source\Core\Controllers\CubeController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
