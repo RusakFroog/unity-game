@@ -1,9 +1,4 @@
-using UnityEngine;
-
-public class Util : MonoBehaviour
+public class Util
 {
-    void Start()
-    {
-        Debug.Log("hi");
-    }
+
 }

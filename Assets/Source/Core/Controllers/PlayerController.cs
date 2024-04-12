@@ -1,30 +1,46 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject Player;
-
-    private void Start()
-    {
-
-    }
-
     [SerializeField]
     private float SPEED = 1.0f;
+    
     private const float DELTA_TIME = 0.01f;
+    
+    private PlayerController _player;
+    private Camera _mainCamera;
+    private Vector3 _cameraOffset;
+
+    private readonly Dictionary<KeyCode, Vector3> _keysForwarding = new Dictionary<KeyCode, Vector3>
+    {
+        { KeyCode.W, Vector3.forward },
+        { KeyCode.A, Vector3.left },
+        { KeyCode.S, Vector3.back },
+        { KeyCode.D, Vector3.right }
+    };
+
+    private void Awake()
+    {
+        _player = this;
+        _mainCamera = Camera.main;
+        _cameraOffset = _mainCamera.transform.position;
+    }
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.W))
-            Player.transform.Translate(DELTA_TIME * SPEED * Vector3.forward);
+        // Move player and camera
+        foreach (var pair in _keysForwarding)
+        {
+            if (Input.GetKey(pair.Key))
+            {
 
-        if (Input.GetKey(KeyCode.A))
-            Player.transform.Translate(DELTA_TIME * SPEED * Vector3.left);
+                this.
 
-        if (Input.GetKey(KeyCode.S))
-            Player.transform.Translate(DELTA_TIME * SPEED * Vector3.back);
+                _player.transform.Translate(DELTA_TIME * SPEED * pair.Value);
 
-        if (Input.GetKey(KeyCode.D))
-            Player.transform.Translate(DELTA_TIME * SPEED * Vector3.right);
+                _mainCamera.transform.position = new Vector3(_player.transform.position.x + _cameraOffset.x, _cameraOffset.y, _player.transform.position.z + _cameraOffset.z);
+            }
+        }
     }
 }
