@@ -6,7 +6,7 @@ public class CubeController : MonoBehaviour
 
     private void Start()
     {
-        Cube = GameObject.Find("Cube1");
+
     }
 
     [SerializeField]
