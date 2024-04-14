@@ -1,46 +1,36 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    private float SPEED = 1.0f;
-    
-    private const float DELTA_TIME = 0.01f;
+    private float _moveSpeed = 5.0f;
+
+    [SerializeField]
+    private DynamicJoystick _joystick;
     
     private PlayerController _player;
-    private Camera _mainCamera;
     private Vector3 _cameraOffset;
-
-    private readonly Dictionary<KeyCode, Vector3> _keysForwarding = new Dictionary<KeyCode, Vector3>
-    {
-        { KeyCode.W, Vector3.forward },
-        { KeyCode.A, Vector3.left },
-        { KeyCode.S, Vector3.back },
-        { KeyCode.D, Vector3.right }
-    };
+    private Rigidbody _rigidbody;
 
     private void Awake()
     {
         _player = this;
-        _mainCamera = Camera.main;
-        _cameraOffset = _mainCamera.transform.position;
+        _cameraOffset = Camera.main.transform.position;
+        _rigidbody = _player.GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
     {
-        // Move player and camera
-        foreach (var pair in _keysForwarding)
+        Vector3 velocity = new Vector3(_joystick.Horizontal, _rigidbody.velocity.y, _joystick.Vertical) * _moveSpeed;
+
+        _rigidbody.velocity = velocity;
+
+        Camera.main.transform.position = new Vector3(_player.transform.position.x + _cameraOffset.x, _cameraOffset.y, _player.transform.position.z + _cameraOffset.z);
+
+        if (_joystick.Horizontal != 0 || _joystick.Vertical != 0)
         {
-            if (Input.GetKey(pair.Key))
-            {
-
-                this.
-
-                _player.transform.Translate(DELTA_TIME * SPEED * pair.Value);
-
-                _mainCamera.transform.position = new Vector3(_player.transform.position.x + _cameraOffset.x, _cameraOffset.y, _player.transform.position.z + _cameraOffset.z);
-            }
+            _rigidbody.rotation = Quaternion.LookRotation(-_rigidbody.velocity);
+            _rigidbody.rotation = new Quaternion(0, _rigidbody.rotation.y, 0, _rigidbody.rotation.w);
         }
     }
 }
