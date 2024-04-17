@@ -11,12 +11,14 @@ public class PlayerController : MonoBehaviour
     private PlayerController _player;
     private Vector3 _cameraOffset;
     private Rigidbody _rigidbody;
+    private Animator _animator;
 
     private void Awake()
     {
         _player = this;
         _cameraOffset = Camera.main.transform.position;
         _rigidbody = _player.GetComponent<Rigidbody>();
+        _animator = _player.GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -29,8 +31,12 @@ public class PlayerController : MonoBehaviour
 
         if (_joystick.Horizontal != 0 || _joystick.Vertical != 0)
         {
-            _rigidbody.rotation = Quaternion.LookRotation(-_rigidbody.velocity);
-            _rigidbody.rotation = new Quaternion(0, _rigidbody.rotation.y, 0, _rigidbody.rotation.w);
+            _rigidbody.rotation = Quaternion.LookRotation(_rigidbody.velocity);
+            
+            Quaternion newRotation = new Quaternion(0f, _rigidbody.rotation.y, 0f, _rigidbody.rotation.w);
+            newRotation.Normalize();
+
+            _rigidbody.rotation = newRotation;
         }
     }
 }
