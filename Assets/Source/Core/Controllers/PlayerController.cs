@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     
     private PlayerController _player;
     private Vector3 _cameraOffsetPosition;
+    private Vector3 _cameraRotation;
     private Rigidbody _rigidbody;
     private Animator _animator;
 
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
         _player = this;
 
         _cameraOffsetPosition = Camera.main.transform.position;
+        _cameraRotation = Camera.main.transform.rotation.eulerAngles;
 
         _rigidbody = _player.GetComponent<Rigidbody>();
         _animator = _player.GetComponent<Animator>();
@@ -37,7 +39,10 @@ public class PlayerController : MonoBehaviour
 
         if (isMoving)
         {
-            Vector3 velocity = new Vector3(_joystick.Horizontal, _rigidbody.velocity.y, _joystick.Vertical) * _moveSpeed;
+            var matrix = Matrix4x4.Rotate(Quaternion.Euler(0, _cameraRotation.y, 0));
+            Vector3 vector = matrix.MultiplyPoint3x4(new Vector3(_joystick.Horizontal, 0, _joystick.Vertical));
+
+            Vector3 velocity = vector * _moveSpeed;
 
             _rigidbody.velocity = velocity;
             _rigidbody.rotation = Quaternion.LookRotation(_rigidbody.velocity);
@@ -47,7 +52,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            _rigidbody.velocity = new Vector3(0, 0, 0); ;
+            _rigidbody.velocity = new Vector3(0, 0, 0);
         }
 
         _animator.SetBool("IsRunning", isMoving);
