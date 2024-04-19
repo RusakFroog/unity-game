@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -16,6 +17,8 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        Application.targetFrameRate = 120;
+
         _player = this;
 
         _cameraOffsetPosition = Camera.main.transform.position;
@@ -42,7 +45,7 @@ public class PlayerController : MonoBehaviour
 
             _rigidbody.velocity = vector * _moveSpeed;
             _rigidbody.rotation = Quaternion.LookRotation(_rigidbody.velocity);
-            _rigidbody.rotation = new Quaternion(0f, 0f, 0f, _rigidbody.rotation.w);
+            _rigidbody.rotation = new Quaternion(0f, _rigidbody.rotation.y, 0f, _rigidbody.rotation.w);
 
             _moveCamera();
         }
