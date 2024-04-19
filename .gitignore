@@ -8,3 +8,5 @@ obj
 /.vscode
 Assembly-CSharp.csproj
 Assembly-CSharp-Editor.csproj
+*.meta
+!*.*.meta

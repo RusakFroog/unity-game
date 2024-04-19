@@ -14,9 +14,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _rigidbody;
     private Animator _animator;
 
-    //[SerializeField]
-    //private GameObject _gameObjectSetup;
-
     private void Awake()
     {
         _player = this;
@@ -40,13 +37,12 @@ public class PlayerController : MonoBehaviour
         if (isMoving)
         {
             var matrix = Matrix4x4.Rotate(Quaternion.Euler(0, _cameraRotation.y, 0));
+            
             Vector3 vector = matrix.MultiplyPoint3x4(new Vector3(_joystick.Horizontal, 0, _joystick.Vertical));
 
-            Vector3 velocity = vector * _moveSpeed;
-
-            _rigidbody.velocity = velocity;
+            _rigidbody.velocity = vector * _moveSpeed;
             _rigidbody.rotation = Quaternion.LookRotation(_rigidbody.velocity);
-            _rigidbody.rotation = new Quaternion(0f, _rigidbody.rotation.y, 0f, _rigidbody.rotation.w);
+            _rigidbody.rotation = new Quaternion(0f, 0f, 0f, _rigidbody.rotation.w);
 
             _moveCamera();
         }
