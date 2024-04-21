@@ -17,8 +17,6 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        Application.targetFrameRate = 120;
-
         _player = this;
 
         _cameraOffsetPosition = Camera.main.transform.position;
