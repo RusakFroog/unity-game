@@ -1,6 +1,5 @@
 ﻿using Assets.Source.Core.Setups.Models.Interfaces;
 using Assets.Source.Core.Setups.Models.Enums;
-using Assets.Source.Core.Utils;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -10,9 +9,9 @@ namespace Assets.Source.Core.Setups.Models.Components
     {
         public readonly Setup Setup;
 
-        public abstract Dictionary<ComponentLevel, Quaternion> Rotations { get; }
-        public abstract Dictionary<ComponentLevel, Vector3> PositionOffsets { get; }
         public abstract string Name { get; }
+
+        protected abstract Dictionary<ComponentLevel, Vector3> _offsets { get; }
 
         public GameObject GameObject { get; set; } = null;
         public ComponentLevel Level { get; set; } = ComponentLevel.Lvl1;
@@ -51,7 +50,10 @@ namespace Assets.Source.Core.Setups.Models.Components
 
             Object.Destroy(GameObject);
 
-            GameObject = PrefabManager.Generate(Name, $"Props/Setups/{Level}", Position + PositionOffsets[level], Rotations[level], Setup.transform);
+            Vector3 offset = _offsets.GetValueOrDefault(Level, Vector3.zero);
+            string pathPrefab = $"Prefabs/Props/Setups/{Level}/{Name}";
+
+            GameObject = Object.Instantiate(Resources.Load<GameObject>(pathPrefab), Position + offset, Rotation, Setup.transform);
         }
     }
 }
