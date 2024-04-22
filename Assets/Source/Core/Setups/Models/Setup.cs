@@ -25,7 +25,7 @@ namespace Assets.Source.Core.Setups.Models
 
             Monitor.Change(ComponentLevel.Lvl2);
             Pc.Change(ComponentLevel.Lvl2);
-            Mouse.Change(ComponentLevel.Lvl2);
+            Mouse.Change(ComponentLevel.Lvl3);
             Keyboard.Change(ComponentLevel.Lvl2);
             Table.Change(ComponentLevel.Lvl2);
             Chear.Change(ComponentLevel.Lvl3);

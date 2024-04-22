@@ -44,7 +44,7 @@ namespace Assets.Source.Core.Setups.Models.Components
             GameObject.transform.rotation = Rotation;
         }
 
-        public virtual void Change(ComponentLevel level)
+        public void Change(ComponentLevel level)
         {
             Level = level;
 
