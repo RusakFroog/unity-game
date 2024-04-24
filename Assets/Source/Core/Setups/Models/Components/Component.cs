@@ -11,7 +11,7 @@ namespace Assets.Source.Core.Setups.Models.Components
 
         public abstract string Name { get; }
 
-        protected abstract Dictionary<ComponentLevel, Vector3> _position { get; }
+        protected abstract Dictionary<ComponentLevel, Vector3> _positions { get; }
 
         public GameObject GameObject { get; set; } = null;
         public ComponentLevel Level { get; set; } = ComponentLevel.Lvl1;
@@ -30,9 +30,9 @@ namespace Assets.Source.Core.Setups.Models.Components
         {
             Position = position;
 
-            Position.Normalize();
+            //Position.Normalize();
 
-            GameObject.transform.position = Position;
+            GameObject.transform.SetLocalPositionAndRotation(Position, Rotation);
         }
         
         public void SetRotation(Quaternion rotation)
@@ -50,10 +50,12 @@ namespace Assets.Source.Core.Setups.Models.Components
 
             Object.Destroy(GameObject);
 
-            Position = _position.GetValueOrDefault(Level, Position);
             string pathPrefab = $"Prefabs/Props/Setups/{Level}/{Name}";
 
+            Position = _positions.GetValueOrDefault(Level, Position);
             GameObject = Object.Instantiate(Resources.Load<GameObject>(pathPrefab), Position, Rotation, Setup.transform);
+
+            SetPosition(Position);
         }
     }
 }

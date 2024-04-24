@@ -1,6 +1,7 @@
 ﻿using Assets.Source.Core.Setups.Models.Components;
 using Assets.Source.Core.Setups.Models.Enums;
 using Assets.Source.Core.Setups.Models.Interfaces;
+using Assets.Source.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -23,10 +24,11 @@ namespace Assets.Source.Core.Setups.Models
         {
             _initComponents();
 
-            Monitor.Change(ComponentLevel.Lvl3);
+            Monitor.Change(ComponentLevel.Lvl2);
             Pc.Change(ComponentLevel.Lvl2);
-            Mouse.Change(ComponentLevel.Lvl3);
-            Keyboard.Change(ComponentLevel.Lvl3);
+            Mouse.Change(ComponentLevel.Lvl1);
+            Keyboard.Change(ComponentLevel.Lvl1);
+            Table.Change(ComponentLevel.Lvl2);
             Table.Change(ComponentLevel.Lvl3);
             Chear.Change(ComponentLevel.Lvl3);
 
@@ -45,13 +47,19 @@ namespace Assets.Source.Core.Setups.Models
                 if (componentType == null)
                     continue;
 
-                object instance = Activator.CreateInstance(componentType, new object[] { this, ComponentLevel.Lvl1, gameObject.transform.position, gameObject.transform.rotation });
+                object instance = Activator.CreateInstance(componentType, new object[] { this, ComponentLevel.Lvl1, gameObject.transform.localPosition, gameObject.transform.localRotation });
 
                 Components.Component setupComponent = (Components.Component)instance;
                 setupComponent.GameObject = gameObject;
 
+                setupComponent.Change(ComponentLevel.Lvl1);
+
                 _setProperty(componentName, instance);
+
             }
+
+            ProgressBar mainProgressBar = ProgressBar.ProgressBars["ProgressLocation"];
+            mainProgressBar.AddProgress(100);
         }
 
         private void _setProperty(string componentName, object instance)
