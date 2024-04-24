@@ -23,11 +23,11 @@ namespace Assets.Source.Core.Setups.Models
         {
             _initComponents();
 
-            Monitor.Change(ComponentLevel.Lvl2);
+            Monitor.Change(ComponentLevel.Lvl3);
             Pc.Change(ComponentLevel.Lvl2);
             Mouse.Change(ComponentLevel.Lvl3);
-            Keyboard.Change(ComponentLevel.Lvl2);
-            Table.Change(ComponentLevel.Lvl2);
+            Keyboard.Change(ComponentLevel.Lvl3);
+            Table.Change(ComponentLevel.Lvl3);
             Chear.Change(ComponentLevel.Lvl3);
 
             Setups.Add(this);
@@ -64,7 +64,6 @@ namespace Assets.Source.Core.Setups.Models
 
         public void ChangeComponent(ISetupComponent component)
         {
-
         }
     }
 }
