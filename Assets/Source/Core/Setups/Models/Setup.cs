@@ -23,7 +23,7 @@ namespace Assets.Source.Core.Setups.Models
         {
             _initComponents();
 
-            Monitor.Change(ComponentLevel.Lvl2);
+            Monitor.Change(ComponentLevel.Lvl3);
             Pc.Change(ComponentLevel.Lvl2);
             Mouse.Change(ComponentLevel.Lvl3);
             Keyboard.Change(ComponentLevel.Lvl2);
