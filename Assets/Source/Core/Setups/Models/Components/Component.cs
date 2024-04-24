@@ -11,7 +11,7 @@ namespace Assets.Source.Core.Setups.Models.Components
 
         public abstract string Name { get; }
 
-        protected abstract Dictionary<ComponentLevel, Vector3> _offsets { get; }
+        protected abstract Dictionary<ComponentLevel, Vector3> _position { get; }
 
         public GameObject GameObject { get; set; } = null;
         public ComponentLevel Level { get; set; } = ComponentLevel.Lvl1;
@@ -50,10 +50,10 @@ namespace Assets.Source.Core.Setups.Models.Components
 
             Object.Destroy(GameObject);
 
-            Vector3 offset = _offsets.GetValueOrDefault(Level, Vector3.zero);
+            Position = _position.GetValueOrDefault(Level, Position);
             string pathPrefab = $"Prefabs/Props/Setups/{Level}/{Name}";
 
-            GameObject = Object.Instantiate(Resources.Load<GameObject>(pathPrefab), Position + offset, Rotation, Setup.transform);
+            GameObject = Object.Instantiate(Resources.Load<GameObject>(pathPrefab), Position, Rotation, Setup.transform);
         }
     }
 }

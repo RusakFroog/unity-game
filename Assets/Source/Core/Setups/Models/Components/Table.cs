@@ -8,7 +8,7 @@ namespace Assets.Source.Core.Setups.Models.Components
     {
         public override string Name => "Table";
 
-        protected override Dictionary<ComponentLevel, Vector3> _offsets => new Dictionary<ComponentLevel, Vector3>
+        protected override Dictionary<ComponentLevel, Vector3> _position => new Dictionary<ComponentLevel, Vector3>
         {
 
         };
