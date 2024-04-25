@@ -18,19 +18,19 @@ namespace Assets.Source.Core.Setups.Models
         public Monitor Monitor { get; private set; }
         public Mouse Mouse { get; private set; }
         public Keyboard Keyboard { get; private set; }
-        public Chear Chear { get; private set; }
+        public Chair Chair { get; private set; }
 
         private void Awake()
         {
             _initComponents();
 
             Monitor.Change(ComponentLevel.Lvl2);
-            Pc.Change(ComponentLevel.Lvl2);
+            Pc.Change(ComponentLevel.Lvl4);
             Mouse.Change(ComponentLevel.Lvl1);
             Keyboard.Change(ComponentLevel.Lvl1);
             Table.Change(ComponentLevel.Lvl2);
             Table.Change(ComponentLevel.Lvl3);
-            Chear.Change(ComponentLevel.Lvl3);
+            Chair.Change(ComponentLevel.Lvl3);
 
             Setups.Add(this);
         }
