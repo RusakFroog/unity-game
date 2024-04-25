@@ -11,7 +11,9 @@ namespace Assets.Source.Core.Setups.Models
 {
     public class Setup : MonoBehaviour
     {
-        public static readonly List<Setup> Setups = new List<Setup>();
+        public static readonly Dictionary<ushort, Setup> Setups = new Dictionary<ushort, Setup>();
+        private static ushort _lastSetupId = 0;
+        public Vector3 Position { get; private set; } =  new Vector3(0, 0, 0);
 
         public Pc Pc { get; private set; }
         public Table Table { get; private set; }
@@ -24,6 +26,8 @@ namespace Assets.Source.Core.Setups.Models
         {
             _initComponents();
 
+            Position = transform.position;
+
             Monitor.Change(ComponentLevel.Lvl2);
             Pc.Change(ComponentLevel.Lvl4);
             Mouse.Change(ComponentLevel.Lvl1);
@@ -32,7 +36,9 @@ namespace Assets.Source.Core.Setups.Models
             Table.Change(ComponentLevel.Lvl3);
             Chair.Change(ComponentLevel.Lvl3);
 
-            Setups.Add(this);
+            Setups.Add(_lastSetupId, this);
+
+            _lastSetupId++;
         }
 
         private void _initComponents()
@@ -58,8 +64,8 @@ namespace Assets.Source.Core.Setups.Models
 
             }
 
-            ProgressBar mainProgressBar = ProgressBar.ProgressBars["ProgressLocation"];
-            mainProgressBar.AddProgress(100);
+            // ProgressBar mainProgressBar = ProgressBar.ProgressBars["ProgressLocation"];
+            // mainProgressBar.AddProgress(100);
         }
 
         private void _setProperty(string componentName, object instance)
