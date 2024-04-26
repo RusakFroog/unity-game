@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9c78ca2412226ab4bade2feb979d79f5,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.57
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9c78ca2412226ab4bade2feb979d79f5,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.57
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9c78ca2412226ab4bade2feb979d79f5,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.57
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9c78ca2412226ab4bade2feb979d79f5,
         type: 3}
@@ -46,7 +46,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9c78ca2412226ab4bade2feb979d79f5,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.00000008146034
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9c78ca2412226ab4bade2feb979d79f5,
         type: 3}
@@ -56,7 +56,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9c78ca2412226ab4bade2feb979d79f5,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9c78ca2412226ab4bade2feb979d79f5,
         type: 3}
@@ -82,21 +82,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Keyboard
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 9c78ca2412226ab4bade2feb979d79f5,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 2191750151954457832, guid: 9c78ca2412226ab4bade2feb979d79f5,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 6514109808938276807, guid: 9c78ca2412226ab4bade2feb979d79f5,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -30,7 +30,7 @@ namespace Assets.Source.Core.Setups.Models
             Monitor.Change(ComponentLevel.Lvl2);
             Pc.Change(ComponentLevel.Lvl3);
             Mouse.Change(ComponentLevel.Lvl3);
-            Keyboard.Change(ComponentLevel.Lvl1);
+            Keyboard.Change(ComponentLevel.Lvl2);
             Table.Change(ComponentLevel.Lvl2);
             Chair.Change(ComponentLevel.Lvl3);
 
