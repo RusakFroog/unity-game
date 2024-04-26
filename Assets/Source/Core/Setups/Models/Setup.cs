@@ -1,7 +1,5 @@
 ﻿using Assets.Source.Core.Setups.Models.Components;
 using Assets.Source.Core.Setups.Models.Enums;
-using Assets.Source.Core.Setups.Models.Interfaces;
-using Assets.Source.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -12,9 +10,10 @@ namespace Assets.Source.Core.Setups.Models
     public class Setup : MonoBehaviour
     {
         public static readonly Dictionary<ushort, Setup> Setups = new Dictionary<ushort, Setup>();
-        private static ushort _lastSetupId = 0;
-        public Vector3 Position { get; private set; } =  new Vector3(0, 0, 0);
 
+        private static ushort _lastId = 0;
+
+        public Vector3 Position { get; private set; } =  new Vector3(0, 0, 0);
         public Pc Pc { get; private set; }
         public Table Table { get; private set; }
         public Monitor Monitor { get; private set; }
@@ -24,21 +23,20 @@ namespace Assets.Source.Core.Setups.Models
 
         private void Awake()
         {
-            _initComponents();
-
             Position = transform.position;
 
+            _initComponents();
+
             Monitor.Change(ComponentLevel.Lvl2);
-            Pc.Change(ComponentLevel.Lvl4);
-            Mouse.Change(ComponentLevel.Lvl1);
+            Pc.Change(ComponentLevel.Lvl3);
+            Mouse.Change(ComponentLevel.Lvl3);
             Keyboard.Change(ComponentLevel.Lvl1);
             Table.Change(ComponentLevel.Lvl2);
-            Table.Change(ComponentLevel.Lvl3);
             Chair.Change(ComponentLevel.Lvl3);
 
-            Setups.Add(_lastSetupId, this);
+            Setups.Add(_lastId, this);
 
-            _lastSetupId++;
+            _lastId++;
         }
 
         private void _initComponents()
@@ -61,11 +59,7 @@ namespace Assets.Source.Core.Setups.Models
                 setupComponent.Change(ComponentLevel.Lvl1);
 
                 _setProperty(componentName, instance);
-
             }
-
-            // ProgressBar mainProgressBar = ProgressBar.ProgressBars["ProgressLocation"];
-            // mainProgressBar.AddProgress(100);
         }
 
         private void _setProperty(string componentName, object instance)
@@ -76,8 +70,9 @@ namespace Assets.Source.Core.Setups.Models
                 property.SetValue(this, instance);
         }
 
-        public void ChangeComponent(ISetupComponent component)
+        public void ChangeComponent(Components.Component component, ComponentLevel level)
         {
+            component.Change(level);
         }
     }
 }

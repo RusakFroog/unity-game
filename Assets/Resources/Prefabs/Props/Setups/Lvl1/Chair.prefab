@@ -81,27 +81,27 @@ PrefabInstance:
     - target: {fileID: -6821209743730531830, guid: b097db61ff1a6904486538acd688955d,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: -4926887409236218260, guid: b097db61ff1a6904486538acd688955d,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 243041194690276544, guid: b097db61ff1a6904486538acd688955d,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b097db61ff1a6904486538acd688955d,
         type: 3}
       propertyPath: m_Name
-      value: Chear
+      value: Chair
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b097db61ff1a6904486538acd688955d,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1,11 +1,10 @@
-﻿using Assets.Source.Core.Setups.Models.Interfaces;
-using Assets.Source.Core.Setups.Models.Enums;
+﻿using Assets.Source.Core.Setups.Models.Enums;
 using UnityEngine;
 using System.Collections.Generic;
 
 namespace Assets.Source.Core.Setups.Models.Components
 {
-    public abstract class Component : ISetupComponent
+    public abstract class Component
     {
         public readonly Setup Setup;
 
@@ -26,13 +25,18 @@ namespace Assets.Source.Core.Setups.Models.Components
             Rotation = rotation;
         }
         
+        public void SetLocalPosition(Vector3 position)
+        {
+            Position = position;
+
+            GameObject.transform.SetLocalPositionAndRotation(Position, Rotation);
+        }
+
         public void SetPosition(Vector3 position)
         {
             Position = position;
 
-            //Position.Normalize();
-
-            GameObject.transform.SetLocalPositionAndRotation(Position, Rotation);
+            GameObject.transform.SetPositionAndRotation(Position, Rotation);
         }
         
         public void SetRotation(Quaternion rotation)
@@ -55,7 +59,7 @@ namespace Assets.Source.Core.Setups.Models.Components
             Position = _positions.GetValueOrDefault(Level, Position);
             GameObject = Object.Instantiate(Resources.Load<GameObject>(pathPrefab), Position, Rotation, Setup.transform);
 
-            SetPosition(Position);
+            SetLocalPosition(Position);
         }
     }
 }

@@ -81,12 +81,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5e31318bb4720914abcf5da0eadd9c16,
         type: 3}
       propertyPath: m_Name
-      value: Chear
+      value: Chair
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5e31318bb4720914abcf5da0eadd9c16,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
