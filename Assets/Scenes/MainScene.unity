@@ -1225,7 +1225,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -244.8, y: 0}
+  m_AnchoredPosition: {x: -226.6, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1150258048
@@ -1242,7 +1242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2329,7 +2329,7 @@ PrefabInstance:
     - target: {fileID: 60727904334086422, guid: 11721fc1e03ec4345af4bdee0b5fce1d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.99
+      value: 1.913
       objectReference: {fileID: 0}
     - target: {fileID: 60727904334086422, guid: 11721fc1e03ec4345af4bdee0b5fce1d,
         type: 3}
@@ -2528,7 +2528,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -236.09999, y: 22.2}
+  m_AnchoredPosition: {x: -217.90001, y: 22.2}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1735022442
@@ -2614,7 +2614,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 30.970757, y: 6.1069927, z: 47.895313, w: -18.623768}
+  m_margin: {x: 30.970757, y: 6.1069927, z: 50.245243, w: -18.623768}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2872,10 +2872,10 @@ RectTransform:
   - {fileID: 1735022441}
   m_Father: {fileID: 1440506247}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.24766825, y: 0.8884791}
+  m_AnchorMin: {x: 0.26142523, y: 0.8884791}
   m_AnchorMax: {x: 0.8245197, y: 0.95752096}
-  m_AnchoredPosition: {x: 47.5, y: 2.1000977}
-  m_SizeDelta: {x: -184, y: -40}
+  m_AnchoredPosition: {x: 40.5, y: 2.1000977}
+  m_SizeDelta: {x: -170, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1956255524
 MonoBehaviour:
