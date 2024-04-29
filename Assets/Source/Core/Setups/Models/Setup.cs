@@ -15,6 +15,7 @@ namespace Assets.Source.Core.Setups.Models
         private static ushort _lastSetupId = 0;
         public Vector3 Position { get; private set; } =  new Vector3(0, 0, 0);
 
+        public List<Components.Component> Components { get; private set; } = new List<Components.Component>();
         public Pc Pc { get; private set; }
         public Table Table { get; private set; }
         public Monitor Monitor { get; private set; }
@@ -31,7 +32,7 @@ namespace Assets.Source.Core.Setups.Models
             Monitor.Change(ComponentLevel.Lvl2);
             Pc.Change(ComponentLevel.Lvl2);
             Mouse.Change(ComponentLevel.Lvl1);
-            Keyboard.Change(ComponentLevel.Lvl1);
+            Keyboard.Change(ComponentLevel.Lvl2);
             Table.Change(ComponentLevel.Lvl2);
             Table.Change(ComponentLevel.Lvl3);
             Chear.Change(ComponentLevel.Lvl2);
@@ -66,6 +67,13 @@ namespace Assets.Source.Core.Setups.Models
 
             // ProgressBar mainProgressBar = ProgressBar.ProgressBars["ProgressLocation"];
             // mainProgressBar.AddProgress(100);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.tag == "Player"){
+                
+            }
         }
 
         private void _setProperty(string componentName, object instance)
