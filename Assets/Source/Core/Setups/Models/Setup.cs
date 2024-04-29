@@ -11,6 +11,7 @@ namespace Assets.Source.Core.Setups.Models
     {
         public static readonly Dictionary<ushort, Setup> Setups = new Dictionary<ushort, Setup>();
 
+        public List<Components.Component> Components { get; private set; } = new List<Components.Component>();
         private static ushort _lastId = 0;
 
         public Vector3 Position { get; private set; } =  new Vector3(0, 0, 0);
@@ -59,6 +60,13 @@ namespace Assets.Source.Core.Setups.Models
                 setupComponent.Change(ComponentLevel.Lvl1);
 
                 _setProperty(componentName, instance);
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.tag == "Player"){
+                
             }
         }
 
