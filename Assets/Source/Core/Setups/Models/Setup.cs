@@ -9,12 +9,14 @@ namespace Assets.Source.Core.Setups.Models
 {
     public class Setup : MonoBehaviour
     {
+        private static ushort _lastId = 0;
+        
         public static readonly Dictionary<ushort, Setup> Setups = new Dictionary<ushort, Setup>();
 
-        public List<Components.Component> Components { get; private set; } = new List<Components.Component>();
-        private static ushort _lastId = 0;
+        public readonly List<Components.Component> Components = new List<Components.Component>();
+        
+        public Vector3 Position { get; private set; } = new Vector3(0, 0, 0);
 
-        public Vector3 Position { get; private set; } =  new Vector3(0, 0, 0);
         public Pc Pc { get; private set; }
         public Table Table { get; private set; }
         public Monitor Monitor { get; private set; }
@@ -24,16 +26,16 @@ namespace Assets.Source.Core.Setups.Models
 
         private void Awake()
         {
-            Position = transform.position;
-
             _initComponents();
 
-            Monitor.Change(ComponentLevel.Lvl2);
-            Pc.Change(ComponentLevel.Lvl3);
-            Mouse.Change(ComponentLevel.Lvl3);
-            Keyboard.Change(ComponentLevel.Lvl2);
+            Monitor.Change(ComponentLevel.Lvl3);
+            Monitor.Change(ComponentLevel.Lvl4);
+            Pc.Change(ComponentLevel.Lvl4);
+            Mouse.Change(ComponentLevel.Lvl4);
+            Keyboard.Change(ComponentLevel.Lvl4);
             Table.Change(ComponentLevel.Lvl2);
-            Chair.Change(ComponentLevel.Lvl3);
+            Table.Change(ComponentLevel.Lvl3);
+            Chair.Change(ComponentLevel.Lvl4);
 
             Setups.Add(_lastId, this);
 
@@ -42,6 +44,8 @@ namespace Assets.Source.Core.Setups.Models
 
         private void _initComponents()
         {
+            Position = transform.position;
+
             for (int i = 0; i < transform.childCount; i++)
             {
                 GameObject gameObject = transform.GetChild(i).gameObject;
@@ -60,13 +64,16 @@ namespace Assets.Source.Core.Setups.Models
                 setupComponent.Change(ComponentLevel.Lvl1);
 
                 _setProperty(componentName, instance);
+
+                Components.Add(setupComponent);
             }
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.tag == "Player"){
-                
+            if (other.CompareTag("Player"))
+            {
+
             }
         }
 
