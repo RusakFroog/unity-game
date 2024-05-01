@@ -39,6 +39,10 @@ namespace Assets.Source.Core.Setups.Models
 
             Setups.Add(_lastId, this);
 
+            #if UNITY_EDITOR
+
+            #endif
+
             _lastId++;
         }
 

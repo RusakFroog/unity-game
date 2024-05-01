@@ -78,6 +78,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5248526316621678191, guid: 4ffe965bce73fd249bcccf16fe8ec0a9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 472845708828864927, guid: 4ffe965bce73fd249bcccf16fe8ec0a9,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -87,6 +92,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pc
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4ffe965bce73fd249bcccf16fe8ec0a9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706283505528246805, guid: 4ffe965bce73fd249bcccf16fe8ec0a9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7583343868983580184, guid: 4ffe965bce73fd249bcccf16fe8ec0a9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 8602484676824925195, guid: 4ffe965bce73fd249bcccf16fe8ec0a9,
         type: 3}
