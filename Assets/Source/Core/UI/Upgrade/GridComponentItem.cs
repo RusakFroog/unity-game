@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +10,7 @@ namespace Assets.Source.Core.UI.Upgrade
     
     public class GridComponentItem
     {
+        private static List<GridComponentItem> allItems = new List<GridComponentItem>();
         public readonly TextMeshProUGUI LabelLevel;
         public readonly TextMeshProUGUI LabelName;
         public readonly Button ComponentButton;
@@ -28,6 +30,8 @@ namespace Assets.Source.Core.UI.Upgrade
             BackgroundImage = backgroundImage;
 
             _init(componentLevel, componentName);
+
+            allItems.Add(this);
         }
 
         public void SetLvl(ushort lvl)
@@ -39,22 +43,27 @@ namespace Assets.Source.Core.UI.Upgrade
         {
             ComponentButton.onClick.AddListener(() => 
             {
-                if (IsSelected)
-                    return;
+                ResetAllItems();
 
+                BackgroundImage.sprite = Resources.Load<Sprite>("Images/Upgrade/GridItems/gridItemBackSelected");
+                IsSelected = true;
+                
                 OnSelectComponent?.Invoke(name);
 
-                string imageBack = IsSelected ? "Images/Upgrade/GridItems/gridItemBack" : "Images/Upgrade/GridItems/gridItemBackSelected";
-
-                BackgroundImage.sprite = Resources.Load<Sprite>(imageBack);
-
-                IsSelected = !IsSelected;
             });
 
             LabelName.text = name;
             ComponentImage.sprite = Resources.Load<Sprite>("Images/Upgrade/Components/" + name);
 
             SetLvl((ushort)lvl);
+        }
+        private static void ResetAllItems()
+        {
+            foreach (var item in allItems)
+            {
+                item.BackgroundImage.sprite = Resources.Load<Sprite>("Images/Upgrade/GridItems/gridItemBack");
+                item.IsSelected = false;
+            }
         }
     }
 }
