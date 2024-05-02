@@ -1,9 +1,12 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Source.Core.UI.Upgrade
 {
+    public delegate void SelectComponent(string componentName);
+    
     public class GridComponentItem
     {
         public readonly TextMeshProUGUI LabelLevel;
@@ -11,6 +14,8 @@ namespace Assets.Source.Core.UI.Upgrade
         public readonly Button ComponentButton;
         public readonly Image Image;
 
+        public SelectComponent SelectComponentDelegate;
+        
         public GridComponentItem(Button button, TextMeshProUGUI level, TextMeshProUGUI name, Image image, int componentLevel, string componentName)
         {
             ComponentButton = button;
@@ -28,7 +33,7 @@ namespace Assets.Source.Core.UI.Upgrade
 
         private void _init(int lvl, string name)
         {
-            ComponentButton.onClick.AddListener(_selectComponenet);
+            ComponentButton.onClick.AddListener(() => _selectComponent(name));
 
             LabelName.text = name;
             Image.sprite = Resources.Load<Sprite>("Images/Upgrade/Components/" + name);
@@ -37,9 +42,9 @@ namespace Assets.Source.Core.UI.Upgrade
         }
 
 
-        private void _selectComponenet()
+        private void _selectComponent(string name)
         {
-
+            SelectComponentDelegate?.Invoke(name);
         }
     }
 }

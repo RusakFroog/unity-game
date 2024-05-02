@@ -45,7 +45,7 @@ namespace Assets.Source.Core.UI.Upgrade
             {
                 GameObject prefabGridItem = Object.Instantiate(Resources.Load<GameObject>("Prefabs/Ui/Upgrade/Grid/ComponentItem"), Vector3.zero, Quaternion.identity, _gridComponents.transform);
 
-                ComponentItem componentItem = new ComponentItem(prefabGridItem, component.Name, (int)component.Level);
+                ComponentItem componentItem = new ComponentItem(Setup.Setups[0], prefabGridItem, component.Name, (int)component.Level);
 
                 _components.Add(componentItem);
             }
@@ -58,11 +58,6 @@ namespace Assets.Source.Core.UI.Upgrade
             _profitMoney.text = componentItem.SelectedComponent.ProfitMoney.ToString();
             _profitTime.text = componentItem.SelectedComponent.ProfitTime.ToString();
             _buyWithMoney.text = componentItem.SelectedComponent.Price.ToString();
-        }
-
-        public void SelectComponenet()
-        {
-
         }
     }
 }
