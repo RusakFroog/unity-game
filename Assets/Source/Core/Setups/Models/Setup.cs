@@ -11,11 +11,11 @@ namespace Assets.Source.Core.Setups.Models
     {
         private static ushort _lastId = 0;
 
-        public ushort Id { get; private set; }
         public static readonly Dictionary<ushort, Setup> Setups = new Dictionary<ushort, Setup>();
 
         public readonly List<Components.Component> Components = new List<Components.Component>();
         
+        public ushort Id { get; private set; }
         public Vector3 Position { get; private set; } = new Vector3(0, 0, 0);
 
         public Pc Pc { get; private set; }
@@ -42,9 +42,7 @@ namespace Assets.Source.Core.Setups.Models
 
             _lastId++;
         }
-
         
-
         private void _initComponents()
         {
             Position = transform.position;

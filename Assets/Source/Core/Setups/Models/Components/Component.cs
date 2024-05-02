@@ -11,39 +11,41 @@ namespace Assets.Source.Core.Setups.Models.Components
         public abstract string Name { get; }
 
         protected abstract Dictionary<ComponentLevel, Vector3> _positions { get; }
-        protected Dictionary<ComponentLevel, int> _profitMoneyPerLevel = new Dictionary<ComponentLevel, int>()
+
+        private Dictionary<ComponentLevel, int> _profitMoneyPerLevel = new Dictionary<ComponentLevel, int>()
         {
-            {ComponentLevel.Lvl1, 0},
-            {ComponentLevel.Lvl2, 10},
-            {ComponentLevel.Lvl3, 20},
-            {ComponentLevel.Lvl4, 30},
-            {ComponentLevel.Lvl5, 40},
-            {ComponentLevel.Lvl6, 50},
-            {ComponentLevel.Lvl7, 60},
-            {ComponentLevel.Lvl8, 70},
+            { ComponentLevel.Lvl1, 0 },
+            { ComponentLevel.Lvl2, 10 },
+            { ComponentLevel.Lvl3, 20 },
+            { ComponentLevel.Lvl4, 30 },
+            { ComponentLevel.Lvl5, 40 },
+            { ComponentLevel.Lvl6, 50 },
+            { ComponentLevel.Lvl7, 60 },
+            { ComponentLevel.Lvl8, 70 },
         };
 
-        protected Dictionary<ComponentLevel, float> _profitTimePerLevel = new Dictionary<ComponentLevel, float>()
+        private Dictionary<ComponentLevel, float> _profitTimePerLevel = new Dictionary<ComponentLevel, float>()
         {
-            {ComponentLevel.Lvl1, 0.0f},
-            {ComponentLevel.Lvl2, 1.0f},
-            {ComponentLevel.Lvl3, 2.0f},
-            {ComponentLevel.Lvl4, 3.0f},
-            {ComponentLevel.Lvl5, 4.0f},
-            {ComponentLevel.Lvl6, 5.0f},
-            {ComponentLevel.Lvl7, 6.0f},
-            {ComponentLevel.Lvl8, 7.0f},
+            { ComponentLevel.Lvl1, 0.0f },
+            { ComponentLevel.Lvl2, 1.0f },
+            { ComponentLevel.Lvl3, 2.0f },
+            { ComponentLevel.Lvl4, 3.0f },
+            { ComponentLevel.Lvl5, 4.0f },
+            { ComponentLevel.Lvl6, 5.0f },
+            { ComponentLevel.Lvl7, 6.0f },
+            { ComponentLevel.Lvl8, 7.0f },
         };
-        protected Dictionary<ComponentLevel, int> _pricePerLevel = new Dictionary<ComponentLevel, int>()
+
+        private Dictionary<ComponentLevel, int> _pricePerLevel = new Dictionary<ComponentLevel, int>()
         {
-            {ComponentLevel.Lvl1, 0},
-            {ComponentLevel.Lvl2, 10},
-            {ComponentLevel.Lvl3, 20},
-            {ComponentLevel.Lvl4, 30},
-            {ComponentLevel.Lvl5, 40},
-            {ComponentLevel.Lvl6, 50},
-            {ComponentLevel.Lvl7, 60},
-            {ComponentLevel.Lvl8, 70},
+            { ComponentLevel.Lvl1, 0 },
+            { ComponentLevel.Lvl2, 10 },
+            { ComponentLevel.Lvl3, 20 },
+            { ComponentLevel.Lvl4, 30 },
+            { ComponentLevel.Lvl5, 40 },
+            { ComponentLevel.Lvl6, 50 },
+            { ComponentLevel.Lvl7, 60 },
+            { ComponentLevel.Lvl8, 70 },
         };
         
 

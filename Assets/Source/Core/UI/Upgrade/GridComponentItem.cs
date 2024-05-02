@@ -21,9 +21,14 @@ namespace Assets.Source.Core.UI.Upgrade
             _init(componentLevel, componentName);
         }
 
+        public void SetLvl(ushort lvl)
+        {
+            LabelLevel.text = $"{lvl}";
+        }
+
         private void _init(int lvl, string name)
         {
-            ComponentButton.onClick.AddListener(SelectComponenet);
+            ComponentButton.onClick.AddListener(_selectComponenet);
 
             LabelName.text = name;
             Image.sprite = Resources.Load<Sprite>("Images/Upgrade/Components/" + name);
@@ -31,12 +36,8 @@ namespace Assets.Source.Core.UI.Upgrade
             SetLvl((ushort)lvl);
         }
 
-        public void SetLvl(ushort lvl)
-        {
-            LabelLevel.text = $"{lvl}";
-        }
 
-        private void SelectComponenet()
+        private void _selectComponenet()
         {
 
         }

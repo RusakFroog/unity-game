@@ -59,6 +59,7 @@ namespace Assets.Source.Core.UI.Upgrade
             _profitTime.text = componentItem.SelectedComponent.ProfitTime.ToString();
             _buyWithMoney.text = componentItem.SelectedComponent.Price.ToString();
         }
+
         public void SelectComponenet()
         {
 
