@@ -1302,9 +1302,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _setupNumber: {fileID: 634562770}
   _componentName: {fileID: 909187144}
-  _componentLvl: {fileID: 818181784}
+  _componentLvl: {fileID: 1050809093}
   _profitMoney: {fileID: 1173188729}
-  _profitTime: {fileID: 1173188729}
+  _profitTime: {fileID: 818181784}
+  _buyWithMoney: {fileID: 1561712453}
+  _selectedComponent: {fileID: 360176628}
   _gridComponentsObject: {fileID: 1893564128}
 --- !u!4 &696664328 stripped
 Transform:
