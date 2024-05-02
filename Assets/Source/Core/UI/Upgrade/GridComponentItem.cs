@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Assets.Source.Core.UI.Upgrade
 {
-    public delegate void SelectComponent(string componentName);
+    public delegate void OnSelectComponent(string componentName);
     
     public class GridComponentItem
     {
@@ -17,7 +17,7 @@ namespace Assets.Source.Core.UI.Upgrade
 
         public bool IsSelected = false;
 
-        public SelectComponent SelectComponentDelegate;
+        public OnSelectComponent OnSelectComponent;
         
         public GridComponentItem(Button button, TextMeshProUGUI level, TextMeshProUGUI name, Image componentImage, Image backgroundImage, int componentLevel, string componentName)
         {
@@ -42,7 +42,7 @@ namespace Assets.Source.Core.UI.Upgrade
                 if (IsSelected)
                     return;
 
-                SelectComponentDelegate?.Invoke(name);
+                OnSelectComponent?.Invoke(name);
 
                 string imageBack = IsSelected ? "Images/Upgrade/GridItems/gridItemBack" : "Images/Upgrade/GridItems/gridItemBackSelected";
 

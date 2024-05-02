@@ -38,7 +38,7 @@ namespace Assets.Source.Core.UI.Upgrade
             UpgradeUI = upgradeUI;
             _curentSetup = curentSetup;
 
-            GridComponentItem.SelectComponentDelegate += SelectComponentDelegate;
+            GridComponentItem.OnSelectComponent += OnSelectComponent;
         }
 
         private GridComponentItem _getComponents(string componentName, int componentLevel, GameObject gameObject)
@@ -65,7 +65,7 @@ namespace Assets.Source.Core.UI.Upgrade
             return new GridComponentItem(gameObject.GetComponent<Button>(), labelLevel, labelName, componentImage, backgroundImage, componentLevel, componentName);
         }
 
-        private void SelectComponentDelegate(string name)
+        private void OnSelectComponent(string name)
         {
             var component = _curentSetup.Components.FirstOrDefault(x => x.Name == name);
 
