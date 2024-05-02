@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System.Linq;
 using Assets.Source.Core.Setups.Models;
 using TMPro;
 using UnityEngine;
@@ -8,11 +8,13 @@ namespace Assets.Source.Core.UI.Upgrade
 {
     public class ComponentItem
     {
-        public readonly string Name;
-        public readonly GridComponentItem GridComponentItem;
         public Setups.Models.Components.Component SelectedComponent;
 
-        private Setup _curentSetup;
+        public readonly string Name;
+        public readonly GridComponentItem GridComponentItem;
+        public readonly Upgrade UpgradeUI;
+
+        private readonly Setup _curentSetup;
 
         private int _level;
 
@@ -27,22 +29,24 @@ namespace Assets.Source.Core.UI.Upgrade
             }
         }
 
-        public ComponentItem(Setup curentSetup, GameObject prefabObject, string name, int level)
+        public ComponentItem(Setup curentSetup, GameObject prefabObject, Upgrade upgradeUI, string name, int level)
         {
             GridComponentItem = _getComponents(name, level, prefabObject);
 
-            GridComponentItem.SelectComponentDelegate += SelectComponentDelegate;
-
             Name = name;
             Level = level;
+            UpgradeUI = upgradeUI;
             _curentSetup = curentSetup;
+
+            GridComponentItem.SelectComponentDelegate += SelectComponentDelegate;
         }
 
         private GridComponentItem _getComponents(string componentName, int componentLevel, GameObject gameObject)
         {
+            Image backgroundImage = gameObject.GetComponent<Image>();
+            Image componentImage = null;
             TextMeshProUGUI labelLevel = null;
             TextMeshProUGUI labelName = null;
-            Image image = null;
 
             for (int i = 0; i < gameObject.transform.childCount; i++)
             {
@@ -55,22 +59,19 @@ namespace Assets.Source.Core.UI.Upgrade
                     labelName = child.GetComponent<TextMeshProUGUI>();
 
                 else if (child.name == "ComponentImage")
-                    image = child.GetComponent<Image>();
+                    componentImage = child.GetComponent<Image>();
             }
 
-            return new GridComponentItem(gameObject.GetComponent<Button>(), labelLevel, labelName, image, componentLevel, componentName);
+            return new GridComponentItem(gameObject.GetComponent<Button>(), labelLevel, labelName, componentImage, backgroundImage, componentLevel, componentName);
         }
 
         private void SelectComponentDelegate(string name)
         {
-            foreach (var component in Setup.Setups[0].Components)
-            {
-                if (component.Name == name)
-                {
-                    SelectedComponent = component;
-                    break;
-                }
-            }
+            var component = _curentSetup.Components.FirstOrDefault(x => x.Name == name);
+
+            SelectedComponent = component;
+
+            UpgradeUI.SetTextValue(_curentSetup, this);
         }
     }
 }

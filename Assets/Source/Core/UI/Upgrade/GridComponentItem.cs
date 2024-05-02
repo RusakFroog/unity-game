@@ -12,16 +12,20 @@ namespace Assets.Source.Core.UI.Upgrade
         public readonly TextMeshProUGUI LabelLevel;
         public readonly TextMeshProUGUI LabelName;
         public readonly Button ComponentButton;
-        public readonly Image Image;
+        public readonly Image ComponentImage;
+        public readonly Image BackgroundImage;
+
+        public bool IsSelected = false;
 
         public SelectComponent SelectComponentDelegate;
         
-        public GridComponentItem(Button button, TextMeshProUGUI level, TextMeshProUGUI name, Image image, int componentLevel, string componentName)
+        public GridComponentItem(Button button, TextMeshProUGUI level, TextMeshProUGUI name, Image componentImage, Image backgroundImage, int componentLevel, string componentName)
         {
             ComponentButton = button;
             LabelLevel = level;
             LabelName = name;
-            Image = image;
+            ComponentImage = componentImage;
+            BackgroundImage = backgroundImage;
 
             _init(componentLevel, componentName);
         }
@@ -33,18 +37,24 @@ namespace Assets.Source.Core.UI.Upgrade
 
         private void _init(int lvl, string name)
         {
-            ComponentButton.onClick.AddListener(() => _selectComponent(name));
+            ComponentButton.onClick.AddListener(() => 
+            {
+                if (IsSelected)
+                    return;
+
+                SelectComponentDelegate?.Invoke(name);
+
+                string imageBack = IsSelected ? "Images/Upgrade/GridItems/gridItemBack" : "Images/Upgrade/GridItems/gridItemBackSelected";
+
+                BackgroundImage.sprite = Resources.Load<Sprite>(imageBack);
+
+                IsSelected = !IsSelected;
+            });
 
             LabelName.text = name;
-            Image.sprite = Resources.Load<Sprite>("Images/Upgrade/Components/" + name);
+            ComponentImage.sprite = Resources.Load<Sprite>("Images/Upgrade/Components/" + name);
 
             SetLvl((ushort)lvl);
-        }
-
-
-        private void _selectComponent(string name)
-        {
-            SelectComponentDelegate?.Invoke(name);
         }
     }
 }
