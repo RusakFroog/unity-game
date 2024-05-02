@@ -10,7 +10,8 @@ namespace Assets.Source.Core.Setups.Models
     public class Setup : MonoBehaviour
     {
         private static ushort _lastId = 0;
-        
+
+        public ushort Id { get; private set; }
         public static readonly Dictionary<ushort, Setup> Setups = new Dictionary<ushort, Setup>();
 
         public readonly List<Components.Component> Components = new List<Components.Component>();
@@ -42,9 +43,12 @@ namespace Assets.Source.Core.Setups.Models
             _lastId++;
         }
 
+        
+
         private void _initComponents()
         {
             Position = transform.position;
+            Id = _lastId;
 
             for (int i = 0; i < transform.childCount; i++)
             {

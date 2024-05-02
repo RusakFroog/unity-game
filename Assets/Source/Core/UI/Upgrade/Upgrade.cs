@@ -24,6 +24,9 @@ namespace Assets.Source.Core.UI.Upgrade
         private TextMeshProUGUI _profitTime;
 
         [SerializeField]
+        private TextMeshProUGUI _buyWithMoney;
+
+        [SerializeField]
         private GameObject _gridComponentsObject;
 
         private List<ComponentItem> _components = new List<ComponentItem>();
@@ -31,8 +34,6 @@ namespace Assets.Source.Core.UI.Upgrade
 
         private void Start()
         {
-            _components = new List<ComponentItem>();
-
             _gridComponents = _gridComponentsObject.GetComponent<GridLayoutGroup>();
 
             SetSetup(Setup.Setups[0]);
@@ -48,6 +49,19 @@ namespace Assets.Source.Core.UI.Upgrade
 
                 _components.Add(componentItem);
             }
+        }
+        public void SetTextValue(Setup setup, ComponentItem componentItem)
+        {
+            _setupNumber.text = "Computer " + setup.Id.ToString();
+            _componentName.text = componentItem.Name;
+            _componentLvl.text = componentItem.Level.ToString();
+            _profitMoney.text = componentItem.SelectedComponent.ProfitMoney.ToString();
+            _profitTime.text = componentItem.SelectedComponent.ProfitTime.ToString();
+            _buyWithMoney.text = componentItem.SelectedComponent.Price.ToString();
+        }
+        public void SelectComponenet()
+        {
+
         }
     }
 }

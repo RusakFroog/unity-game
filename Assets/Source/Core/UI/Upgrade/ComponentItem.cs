@@ -9,6 +9,7 @@ namespace Assets.Source.Core.UI.Upgrade
     {
         public readonly string Name;
         public readonly GridComponentItem GridComponentItem;
+        public Setups.Models.Components.Component SelectedComponent;
 
         private int _level;
 
@@ -51,7 +52,7 @@ namespace Assets.Source.Core.UI.Upgrade
                     image = child.GetComponent<Image>();
             }
 
-            return new GridComponentItem(labelLevel, labelName, image, componentLevel, componentName);
+            return new GridComponentItem(gameObject.GetComponent<Button>(), labelLevel, labelName, image, componentLevel, componentName);
         }
     }
 }

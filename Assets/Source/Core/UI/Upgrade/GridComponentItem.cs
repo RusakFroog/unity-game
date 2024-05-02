@@ -8,10 +8,12 @@ namespace Assets.Source.Core.UI.Upgrade
     {
         public readonly TextMeshProUGUI LabelLevel;
         public readonly TextMeshProUGUI LabelName;
+        public readonly Button ComponentButton;
         public readonly Image Image;
 
-        public GridComponentItem(TextMeshProUGUI level, TextMeshProUGUI name, Image image, int componentLevel, string componentName)
+        public GridComponentItem(Button button, TextMeshProUGUI level, TextMeshProUGUI name, Image image, int componentLevel, string componentName)
         {
+            ComponentButton = button;
             LabelLevel = level;
             LabelName = name;
             Image = image;
@@ -21,6 +23,8 @@ namespace Assets.Source.Core.UI.Upgrade
 
         private void _init(int lvl, string name)
         {
+            ComponentButton.onClick.AddListener(SelectComponenet);
+
             LabelName.text = name;
             Image.sprite = Resources.Load<Sprite>("Images/Upgrade/Components/" + name);
 
@@ -30,6 +34,11 @@ namespace Assets.Source.Core.UI.Upgrade
         public void SetLvl(ushort lvl)
         {
             LabelLevel.text = $"{lvl}";
+        }
+
+        private void SelectComponenet()
+        {
+
         }
     }
 }
