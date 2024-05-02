@@ -30,12 +30,15 @@ namespace Assets.Source.Core.Setups.Models
             _initComponents();
 
             Monitor.Change(ComponentLevel.Lvl3);
-            Monitor.Change(ComponentLevel.Lvl4);
+            Monitor.Change(ComponentLevel.Lvl5);
+
             Pc.Change(ComponentLevel.Lvl5);
             Mouse.Change(ComponentLevel.Lvl5);
-            Keyboard.Change(ComponentLevel.Lvl4);
+            Keyboard.Change(ComponentLevel.Lvl5);
+
             Table.Change(ComponentLevel.Lvl2);
             Table.Change(ComponentLevel.Lvl5);
+
             Chair.Change(ComponentLevel.Lvl5);
 
             Setups.Add(_lastId, this);

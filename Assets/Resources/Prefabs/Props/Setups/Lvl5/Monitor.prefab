@@ -63,10 +63,35 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5816913209878649045, guid: 3bb30f8b509d69d47a8f317385b33748,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5816913209878649045, guid: 3bb30f8b509d69d47a8f317385b33748,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.37399998
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3bb30f8b509d69d47a8f317385b33748,
         type: 3}
       propertyPath: m_Name
       value: Monitor
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650406446701371949, guid: 3bb30f8b509d69d47a8f317385b33748,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6609493762104327279, guid: 3bb30f8b509d69d47a8f317385b33748,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.374
+      objectReference: {fileID: 0}
+    - target: {fileID: 6609493762104327279, guid: 3bb30f8b509d69d47a8f317385b33748,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
