@@ -8,14 +8,14 @@ namespace Assets.Source.Core.UI.Upgrade
 {
     public class Upgrade : InterationDialog
     {
+        [SerializeField]
+        private TextMeshProUGUI _setupNumber;
+
         [SerializeField] 
         private TextMeshProUGUI _componentName;
 
         [SerializeField]
-        private TextMeshProUGUI _setupNumber;
-
-        [SerializeField]
-        private TextMeshProUGUI _componentDescription;
+        private TextMeshProUGUI _componentLvl;
 
         [SerializeField]
         private TextMeshProUGUI _profitMoney;
@@ -24,31 +24,27 @@ namespace Assets.Source.Core.UI.Upgrade
         private TextMeshProUGUI _profitTime;
 
         [SerializeField]
-        private TextMeshProUGUI _componentLvl;
+        private GameObject _gridComponentsObject;
 
-        [SerializeField]
-        private GameObject _componentItems;
-
-        private List<GridComponentItem> _components = new List<GridComponentItem>();
+        private List<ComponentItem> _components = new List<ComponentItem>();
         private GridLayoutGroup _gridComponents;
 
-        void Start()
+        private void Start()
         {
-            _components = new List<GridComponentItem>();
+            _components = new List<ComponentItem>();
 
-            _gridComponents = _componentItems.GetComponent<GridLayoutGroup>();
+            _gridComponents = _gridComponentsObject.GetComponent<GridLayoutGroup>();
 
             SetSetup(Setup.Setups[0]);
         }
-
 
         public void SetSetup(Setup setup)
         {
             foreach (var component in setup.Components)
             {
-                GridComponentItem componentItem = GridComponentItem.Items[component.Name];
+                GameObject prefabGridItem = Object.Instantiate(Resources.Load<GameObject>("Prefabs/Ui/Upgrade/Grid/ComponentItem"), new Vector3(), Quaternion.identity, _gridComponents.transform);
 
-                GameObject componentItemObject = Object.Instantiate(Resources.Load<GameObject>("Prefabs/Ui/Upgrade/Grid/ComponentItem"), new Vector3(), Quaternion.identity, _gridComponents.transform);
+                ComponentItem componentItem = new ComponentItem(prefabGridItem, component.Name, (int)component.Level);
 
                 _components.Add(componentItem);
             }

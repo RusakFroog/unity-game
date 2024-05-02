@@ -1,30 +1,35 @@
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-namespace Assets.Source.Core.UI.Upgrade 
+namespace Assets.Source.Core.UI.Upgrade
 {
     public class GridComponentItem
     {
-        public static Dictionary<string, GridComponentItem> Items = new Dictionary<string, GridComponentItem>()
-        {
-            { "Keyboard", new GridComponentItem("Keyboard", 1) },
-            { "Pc", new GridComponentItem("Pc", 1) },
-            { "Mouse", new GridComponentItem("Mouse", 1) },
-            { "Table", new GridComponentItem("Table", 1) },
-            { "Chair", new GridComponentItem("Chair", 1) },
-            { "Monitor", new GridComponentItem("Monitor", 1) },
-        };
+        public readonly TextMeshProUGUI LabelLevel;
+        public readonly TextMeshProUGUI LabelName;
+        public readonly Image Image;
 
-        public readonly string Name;
-        public readonly Sprite Sprite;
-        public int Level;
-        public readonly ComponentItem ComponentItem;
-
-        private GridComponentItem(string name, int level)
+        public GridComponentItem(TextMeshProUGUI level, TextMeshProUGUI name, Image image, int componentLevel, string componentName)
         {
-            Name = name;
-            Level = level;
-            Sprite = Resources.Load<Sprite>("Images/Upgrade/Components/" + name);
+            LabelLevel = level;
+            LabelName = name;
+            Image = image;
+
+            _init(componentLevel, componentName);
+        }
+
+        private void _init(int lvl, string name)
+        {
+            LabelName.text = name;
+            Image.sprite = Resources.Load<Sprite>("Images/Upgrade/Components/" + name);
+
+            SetLvl((ushort)lvl);
+        }
+
+        public void SetLvl(ushort lvl)
+        {
+            LabelLevel.text = $"{lvl}";
         }
     }
 }
