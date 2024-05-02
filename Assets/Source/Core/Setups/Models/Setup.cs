@@ -31,12 +31,12 @@ namespace Assets.Source.Core.Setups.Models
 
             Monitor.Change(ComponentLevel.Lvl3);
             Monitor.Change(ComponentLevel.Lvl4);
-            Pc.Change(ComponentLevel.Lvl4);
-            Mouse.Change(ComponentLevel.Lvl4);
+            Pc.Change(ComponentLevel.Lvl5);
+            Mouse.Change(ComponentLevel.Lvl5);
             Keyboard.Change(ComponentLevel.Lvl4);
             Table.Change(ComponentLevel.Lvl2);
-            Table.Change(ComponentLevel.Lvl3);
-            Chair.Change(ComponentLevel.Lvl4);
+            Table.Change(ComponentLevel.Lvl5);
+            Chair.Change(ComponentLevel.Lvl5);
 
             Setups.Add(_lastId, this);
 

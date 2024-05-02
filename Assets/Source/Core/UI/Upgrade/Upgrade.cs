@@ -38,8 +38,6 @@ namespace Assets.Source.Core.UI.Upgrade
         private void Start()
         {
             _gridComponents = _gridComponentsObject.GetComponent<GridLayoutGroup>();
-
-            SetSetup(Setup.Setups[0]);
         }
 
         public void SetSetup(Setup setup)
