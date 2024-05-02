@@ -42,7 +42,7 @@ namespace Assets.Source.Core.UI.Upgrade
         {
             foreach (var component in setup.Components)
             {
-                GameObject prefabGridItem = Object.Instantiate(Resources.Load<GameObject>("Prefabs/Ui/Upgrade/Grid/ComponentItem"), new Vector3(), Quaternion.identity, _gridComponents.transform);
+                GameObject prefabGridItem = Object.Instantiate(Resources.Load<GameObject>("Prefabs/Ui/Upgrade/Grid/ComponentItem"), Vector3.zero, Quaternion.identity, _gridComponents.transform);
 
                 ComponentItem componentItem = new ComponentItem(prefabGridItem, component.Name, (int)component.Level);
 
