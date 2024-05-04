@@ -1,4 +1,5 @@
-﻿using Assets.Source.Core.Setups.Models.Components;
+﻿using Assets.Source.Core.Interactions;
+using Assets.Source.Core.Setups.Models.Components;
 using Assets.Source.Core.Setups.Models.Enums;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,8 @@ namespace Assets.Source.Core.Setups.Models
         public Keyboard Keyboard { get; private set; }
         public Chair Chair { get; private set; }
 
+        public Interaction Interaction { get; set; }
+
         private void Awake()
         {
             _initComponents();
@@ -45,7 +48,7 @@ namespace Assets.Source.Core.Setups.Models
 
             _lastId++;
         }
-        
+
         private void _initComponents()
         {
             Position = transform.position;
@@ -74,13 +77,6 @@ namespace Assets.Source.Core.Setups.Models
             }
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.CompareTag("Player"))
-            {
-
-            }
-        }
 
         private void _setProperty(string componentName, object instance)
         {
@@ -88,6 +84,14 @@ namespace Assets.Source.Core.Setups.Models
 
             if (property != null && property.PropertyType.IsAssignableFrom(instance.GetType()))
                 property.SetValue(this, instance);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+
+            }
         }
 
         public void ChangeComponent(Components.Component component, ComponentLevel level)

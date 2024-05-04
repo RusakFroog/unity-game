@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Assets.Source.Core.UI.Upgrade
 {
-    public class Upgrade : InterationDialog
+    public class Upgrade : InteractionDialogue
     {
         [SerializeField]
         private TextMeshProUGUI _setupNumber;
