@@ -4,13 +4,14 @@ namespace Assets.Source.Core.UI
 {
     public class InteractionDialogue : MonoBehaviour
     {
-        private void Awake()
+        public virtual void Show()
         {
-            Hide();
+            this.gameObject.SetActive(true);
         }
-    
-        public virtual void Show() => this.gameObject.SetActive(true);
 
-        public virtual void Hide() => this.gameObject.SetActive(false);
+        public virtual void Hide()
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 }

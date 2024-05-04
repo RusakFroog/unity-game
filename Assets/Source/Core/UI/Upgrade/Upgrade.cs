@@ -35,9 +35,11 @@ namespace Assets.Source.Core.UI.Upgrade
         private List<ComponentItem> _components = new List<ComponentItem>();
         private GridLayoutGroup _gridComponents;
 
-        private void Start()
+        private void Awake()
         {
             _gridComponents = _gridComponentsObject.GetComponent<GridLayoutGroup>();
+
+            Hide();
         }
 
         public void SetSetup(Setup setup)
