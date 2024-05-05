@@ -2,7 +2,7 @@
 {
     public enum ComponentLevel
     {
-        Lvl1, 
+        Lvl1 = 1,
         Lvl2, 
         Lvl3, 
         Lvl4, 

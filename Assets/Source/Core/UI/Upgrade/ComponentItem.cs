@@ -39,6 +39,15 @@ namespace Assets.Source.Core.UI.Upgrade
             GridComponentItem.OnSelectComponent += () => UpgradeUI.SelectComponent(this);
         }
 
+        public void Upgrade()
+        {
+            CurrentSetup.ChangeComponent(SetupComponent, SetupComponent.Level + 1);
+
+            Level = (int)SetupComponent.Level;
+
+            UpgradeUI.SelectComponent(this);
+        }
+
         private GridComponentItem _getComponents(string componentName, int componentLevel, GameObject gameObject)
         {
             Image backgroundImage = gameObject.GetComponent<Image>();

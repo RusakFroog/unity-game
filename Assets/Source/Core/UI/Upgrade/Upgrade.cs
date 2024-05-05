@@ -36,6 +36,8 @@ namespace Assets.Source.Core.UI.Upgrade
         private List<ComponentItem> _components = new List<ComponentItem>();
         private GridLayoutGroup _gridComponents;
 
+        private ComponentItem _selectedComponent;
+
         private void Awake()
         {
             _gridComponents = _gridComponentsObject.GetComponent<GridLayoutGroup>();
@@ -74,11 +76,35 @@ namespace Assets.Source.Core.UI.Upgrade
 
             componentItem.GridComponentItem.BackgroundImage.sprite = Resources.Load<Sprite>("Images/Upgrade/GridItems/gridItemBackSelected");
             componentItem.GridComponentItem.IsSelected = true;
+
+            _selectedComponent = componentItem;
         }
 
         public void OnClickClose()
         {
             Hide();
+        }
+
+        public void OnClickBuyWithMoney()
+        {
+            // Money.Change(-price);
+
+            _upgradeComponent();
+        }
+
+        public void OnClickBuyWithAd()
+        {
+            // Ad.Show();
+
+            _upgradeComponent();
+        }
+
+        private void _upgradeComponent()
+        {
+            if (_selectedComponent == null)
+                return;
+
+            _selectedComponent.Upgrade();
         }
     }
 }
