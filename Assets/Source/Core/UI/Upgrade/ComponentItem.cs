@@ -45,6 +45,9 @@ namespace Assets.Source.Core.UI.Upgrade
 
             Level = (int)SetupComponent.Level;
 
+            if (SetupComponent.IsMaxLevel())
+                GridComponentItem.SetLvl((ushort)Level, true);
+
             UpgradeUI.SelectComponent(this);
         }
 

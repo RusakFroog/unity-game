@@ -36,10 +36,12 @@ namespace Assets.Source.Core.UI.Upgrade
             _gridItems.Add(this);
         }
 
-        public void SetLvl(ushort lvl)
+        public void SetLvl(ushort lvl, bool isMaxLvl = false)
         {
-            LabelLevel.text = $"{lvl}";
+            LabelLevel.text = isMaxLvl ? "M" : $"{lvl}";
         }
+
+        public static void ClearItems() => _gridItems.Clear();
 
         private void _init(int lvl, string name)
         {
@@ -47,7 +49,7 @@ namespace Assets.Source.Core.UI.Upgrade
             {
                 if (IsSelected)
                     return;
-
+                
                 GridComponentItem previousItem = _gridItems.FirstOrDefault(x => x.IsSelected);
 
                 if (previousItem != null)
@@ -67,11 +69,6 @@ namespace Assets.Source.Core.UI.Upgrade
             ComponentImage.sprite = Resources.Load<Sprite>("Images/Upgrade/Components/" + name);
 
             SetLvl((ushort)lvl);
-        }
-
-        public void Clear()
-        {
-            _gridItems.Clear();
         }
     }
 }

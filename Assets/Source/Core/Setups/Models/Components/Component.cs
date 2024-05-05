@@ -1,6 +1,7 @@
 ﻿using Assets.Source.Core.Setups.Models.Enums;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Assets.Source.Core.Setups.Models.Components
 {
@@ -12,50 +13,49 @@ namespace Assets.Source.Core.Setups.Models.Components
 
         protected abstract Dictionary<ComponentLevel, Vector3> _positions { get; }
 
-        private Dictionary<ComponentLevel, int> _profitMoneyPerLevel = new Dictionary<ComponentLevel, int>()
+        private Dictionary<ComponentLevel, int> _incomeMoney = new Dictionary<ComponentLevel, int>()
         {
-            { ComponentLevel.Lvl1, 0 },
-            { ComponentLevel.Lvl2, 10 },
-            { ComponentLevel.Lvl3, 20 },
-            { ComponentLevel.Lvl4, 30 },
-            { ComponentLevel.Lvl5, 40 },
-            { ComponentLevel.Lvl6, 50 },
-            { ComponentLevel.Lvl7, 60 },
-            { ComponentLevel.Lvl8, 70 },
+            { ComponentLevel.Lvl1, 10 },
+            { ComponentLevel.Lvl2, 20 },
+            { ComponentLevel.Lvl3, 30 },
+            { ComponentLevel.Lvl4, 40 },
+            /*{ ComponentLevel.Lvl5, 50 },
+            { ComponentLevel.Lvl6, 60 },
+            { ComponentLevel.Lvl7, 70 },
+            { ComponentLevel.Lvl8, 80 },*/
         };
 
-        private Dictionary<ComponentLevel, float> _profitTimePerLevel = new Dictionary<ComponentLevel, float>()
+        private Dictionary<ComponentLevel, float> _needTime = new Dictionary<ComponentLevel, float>()
         {
-            { ComponentLevel.Lvl1, 0.0f },
-            { ComponentLevel.Lvl2, 1.0f },
-            { ComponentLevel.Lvl3, 2.0f },
-            { ComponentLevel.Lvl4, 3.0f },
-            { ComponentLevel.Lvl5, 4.0f },
-            { ComponentLevel.Lvl6, 5.0f },
-            { ComponentLevel.Lvl7, 6.0f },
-            { ComponentLevel.Lvl8, 7.0f },
+            { ComponentLevel.Lvl1, 7.0f },
+            { ComponentLevel.Lvl2, 6.0f },
+            { ComponentLevel.Lvl3, 5.0f },
+            { ComponentLevel.Lvl4, 4.0f },
+            /*{ ComponentLevel.Lvl5, 3.0f },
+            { ComponentLevel.Lvl6, 2.0f },
+            { ComponentLevel.Lvl7, 1.0f },
+            { ComponentLevel.Lvl8, 0.0f },*/
         };
 
-        private Dictionary<ComponentLevel, int> _pricePerLevel = new Dictionary<ComponentLevel, int>()
+        private Dictionary<ComponentLevel, int> _upgradePrices = new Dictionary<ComponentLevel, int>()
         {
-            { ComponentLevel.Lvl1, 0 },
-            { ComponentLevel.Lvl2, 10 },
-            { ComponentLevel.Lvl3, 20 },
-            { ComponentLevel.Lvl4, 30 },
-            { ComponentLevel.Lvl5, 40 },
-            { ComponentLevel.Lvl6, 50 },
-            { ComponentLevel.Lvl7, 60 },
-            { ComponentLevel.Lvl8, 70 },
+            { ComponentLevel.Lvl1, 10 },
+            { ComponentLevel.Lvl2, 20 },
+            { ComponentLevel.Lvl3, 30 },
+            { ComponentLevel.Lvl4, 40 },
+            /*{ ComponentLevel.Lvl5, 50 },
+            { ComponentLevel.Lvl6, 60 },
+            { ComponentLevel.Lvl7, 70 },
+            { ComponentLevel.Lvl8, 80 },*/
         };
         
-
         public GameObject GameObject { get; set; } = null;
         public ComponentLevel Level { get; set; } = ComponentLevel.Lvl1;
         public Vector3 Position { get; private set; } = new Vector3(0, 0, 0);
         public Quaternion Rotation { get; private set; } = new Quaternion(0, 0, 0, 0);
-        public int ProfitMoney = 0;
-        public float ProfitTime = 0.0f;
-        public int Price = 0;
+        public int ProfitMoney { get; private set; } = 0;
+        public float ProfitTime { get; private set; } = 0f;
+        public int UpgradePrice { get; private set; } = 0;
 
         public Component(Setup setup, ComponentLevel level, Vector3 position = default, Quaternion rotation = default)
         {
@@ -63,6 +63,10 @@ namespace Assets.Source.Core.Setups.Models.Components
             Level = level;
             Position = position;
             Rotation = rotation;
+
+            ProfitMoney = _incomeMoney.GetValueOrDefault(Level, 0);
+            ProfitTime = _needTime.GetValueOrDefault(Level, 0f);
+            UpgradePrice = _upgradePrices.GetValueOrDefault(Level, 0);
         }
         
         public void SetLocalPosition(Vector3 position)
@@ -88,6 +92,13 @@ namespace Assets.Source.Core.Setups.Models.Components
             GameObject.transform.rotation = Rotation;
         }
 
+        public bool IsMaxLevel()
+        {
+            var values = (ComponentLevel[])System.Enum.GetValues(typeof(ComponentLevel));
+
+            return Level >= values.Last();
+        }
+
         public void Change(ComponentLevel level)
         {
             Level = level;
@@ -96,9 +107,9 @@ namespace Assets.Source.Core.Setups.Models.Components
 
             string pathPrefab = $"Prefabs/Props/Setups/{Level}/{Name}";
             
-            ProfitMoney = _profitMoneyPerLevel.GetValueOrDefault(Level, 0);
-            ProfitTime = _profitTimePerLevel.GetValueOrDefault(Level, 0.0f);
-            Price = _pricePerLevel.GetValueOrDefault(Level, 0);
+            ProfitMoney = _incomeMoney.GetValueOrDefault(Level, 0);
+            ProfitTime = _needTime.GetValueOrDefault(Level, 0f);
+            UpgradePrice = _upgradePrices.GetValueOrDefault(Level, 0);
 
             Position = _positions.GetValueOrDefault(Level, Position);
             GameObject = Object.Instantiate(Resources.Load<GameObject>(pathPrefab), Position, Rotation, Setup.transform);

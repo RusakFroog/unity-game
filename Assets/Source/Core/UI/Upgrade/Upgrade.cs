@@ -51,6 +51,10 @@ namespace Assets.Source.Core.UI.Upgrade
                 return;
 
             _components.Clear();
+            GridComponentItem.ClearItems();
+            
+            for (int i = 0; i < _gridComponentsObject.transform.childCount; i++)
+                Object.Destroy(_gridComponentsObject.transform.GetChild(i).gameObject);
 
             foreach (var component in setup.Components)
             {
@@ -68,10 +72,10 @@ namespace Assets.Source.Core.UI.Upgrade
         {
             _setupNumber.text = $"Computer #{componentItem.CurrentSetup.Id + 1}";
             _componentName.text = componentItem.Name;
-            _componentLvl.text = $"LVL {componentItem.Level}";
+            _componentLvl.text = componentItem.SetupComponent.IsMaxLevel() ? "MAX" : $"LVL {componentItem.Level}";
             _profitMoney.text = componentItem.SetupComponent.ProfitMoney.ToString();
             _profitTime.text = componentItem.SetupComponent.ProfitTime.ToString();
-            _buyWithMoney.text = componentItem.SetupComponent.Price.ToString();
+            _buyWithMoney.text = componentItem.SetupComponent.IsMaxLevel() ? "MAX" : componentItem.SetupComponent.UpgradePrice.ToString();
             _componentImage.sprite = Resources.Load<Sprite>("Images/Upgrade/Components/" + componentItem.Name);
 
             componentItem.GridComponentItem.BackgroundImage.sprite = Resources.Load<Sprite>("Images/Upgrade/GridItems/gridItemBackSelected");
@@ -102,6 +106,9 @@ namespace Assets.Source.Core.UI.Upgrade
         private void _upgradeComponent()
         {
             if (_selectedComponent == null)
+                return;
+
+            if (_selectedComponent.SetupComponent.IsMaxLevel())
                 return;
 
             _selectedComponent.Upgrade();

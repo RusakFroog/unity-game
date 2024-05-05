@@ -76,7 +76,6 @@ namespace Assets.Source.Core.Setups.Models
             }
         }
 
-
         private void _setProperty(string componentName, object instance)
         {
             PropertyInfo property = GetType().GetProperty(componentName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
