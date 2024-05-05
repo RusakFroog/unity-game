@@ -19,10 +19,10 @@ namespace Assets.Source.Core.Setups.Models.Components
             { ComponentLevel.Lvl2, 20 },
             { ComponentLevel.Lvl3, 30 },
             { ComponentLevel.Lvl4, 40 },
-            /*{ ComponentLevel.Lvl5, 50 },
+            { ComponentLevel.Lvl5, 50 },
             { ComponentLevel.Lvl6, 60 },
             { ComponentLevel.Lvl7, 70 },
-            { ComponentLevel.Lvl8, 80 },*/
+            { ComponentLevel.Lvl8, 80 },
         };
 
         private Dictionary<ComponentLevel, float> _needTime = new Dictionary<ComponentLevel, float>()
@@ -31,10 +31,10 @@ namespace Assets.Source.Core.Setups.Models.Components
             { ComponentLevel.Lvl2, 6.0f },
             { ComponentLevel.Lvl3, 5.0f },
             { ComponentLevel.Lvl4, 4.0f },
-            /*{ ComponentLevel.Lvl5, 3.0f },
+            { ComponentLevel.Lvl5, 3.0f },
             { ComponentLevel.Lvl6, 2.0f },
             { ComponentLevel.Lvl7, 1.0f },
-            { ComponentLevel.Lvl8, 0.0f },*/
+            { ComponentLevel.Lvl8, 0.0f },
         };
 
         private Dictionary<ComponentLevel, int> _upgradePrices = new Dictionary<ComponentLevel, int>()
@@ -43,10 +43,10 @@ namespace Assets.Source.Core.Setups.Models.Components
             { ComponentLevel.Lvl2, 20 },
             { ComponentLevel.Lvl3, 30 },
             { ComponentLevel.Lvl4, 40 },
-            /*{ ComponentLevel.Lvl5, 50 },
+            { ComponentLevel.Lvl5, 50 },
             { ComponentLevel.Lvl6, 60 },
             { ComponentLevel.Lvl7, 70 },
-            { ComponentLevel.Lvl8, 80 },*/
+            { ComponentLevel.Lvl8, 80 },
         };
         
         public GameObject GameObject { get; set; } = null;
