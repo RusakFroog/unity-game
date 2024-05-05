@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using Assets.Source.Core.Setups.Models;
 using TMPro;
 using UnityEngine;
@@ -9,13 +7,11 @@ namespace Assets.Source.Core.UI.Upgrade
 {
     public class ComponentItem
     {
-        public Setups.Models.Components.Component SelectedComponent;
-
+        public readonly Setups.Models.Components.Component SetupComponent;
         public readonly string Name;
         public readonly GridComponentItem GridComponentItem;
         public readonly Upgrade UpgradeUI;
-
-        private readonly Setup _curentSetup;
+        public readonly Setup CurrentSetup;
 
         private int _level;
 
@@ -30,18 +26,17 @@ namespace Assets.Source.Core.UI.Upgrade
             }
         }
 
-        public ComponentItem(Setup curentSetup, GameObject prefabObject, Upgrade upgradeUI, string name, int level)
+        public ComponentItem(Setup curentSetup, GameObject prefabObject, Upgrade upgradeUI, Setups.Models.Components.Component component)
         {
-            GridComponentItem = _getComponents(name, level, prefabObject);
+            GridComponentItem = _getComponents(component.Name, (int)component.Level, prefabObject);
 
-            Name = name;
-            Level = level;
+            Name = component.Name;
+            Level = (int)component.Level;
             UpgradeUI = upgradeUI;
-            _curentSetup = curentSetup;
+            CurrentSetup = curentSetup;
+            SetupComponent = component;
 
-            SelectedComponent = curentSetup.Components.FirstOrDefault();
-    
-            GridComponentItem.OnSelectComponent += OnSelectComponent;
+            GridComponentItem.OnSelectComponent += () => UpgradeUI.SelectComponent(this);
         }
 
         private GridComponentItem _getComponents(string componentName, int componentLevel, GameObject gameObject)
@@ -66,20 +61,6 @@ namespace Assets.Source.Core.UI.Upgrade
             }
 
             return new GridComponentItem(gameObject.GetComponent<Button>(), labelLevel, labelName, componentImage, backgroundImage, componentLevel, componentName);
-        }
-
-        private void OnSelectComponent(string name)
-        {
-            var component = _curentSetup.Components.FirstOrDefault(x => x.Name == name);
-
-            SelectedComponent = component;
-
-            UpgradeUI.SetTextValue(_curentSetup, this);
-        }
-
-        public void Clear()
-        {
-            GridComponentItem.Clear();
         }
     }
 }

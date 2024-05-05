@@ -1,4 +1,3 @@
-using System.Linq;
 using Assets.Source.Core.Setups.Models;
 using Assets.Source.Core.UI.Upgrade;
 using UnityEngine;
@@ -44,12 +43,7 @@ namespace Assets.Source.Core.Interactions
 
             _upgradeUI.Show();
 
-            _canvas.SetActive(false);
-        }
-
-        public void InterationWithPlayer(ushort setupId)
-        {
-            Setup interactedSetup = Setup.Setups.FirstOrDefault(x => x.Key == setupId).Value;
+            //_canvas.SetActive(false);
         }
     }
 }

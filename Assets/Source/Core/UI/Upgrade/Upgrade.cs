@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Assets.Source.Core.Setups.Models;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,7 +28,7 @@ namespace Assets.Source.Core.UI.Upgrade
         private TextMeshProUGUI _buyWithMoney;
 
         [SerializeField]
-        private Image _selectedComponent;
+        private Image _componentImage;
 
         [SerializeField]
         private GameObject _gridComponentsObject;
@@ -45,41 +45,40 @@ namespace Assets.Source.Core.UI.Upgrade
 
         public void SetSetup(Setup setup)
         {
+            if (_components.Count > 0 && setup == _components.First().CurrentSetup)
+                return;
+
+            _components.Clear();
+
             foreach (var component in setup.Components)
             {
                 GameObject prefabGridItem = Object.Instantiate(Resources.Load<GameObject>("Prefabs/Ui/Upgrade/Grid/ComponentItem"), Vector3.zero, Quaternion.identity, _gridComponents.transform);
 
-                ComponentItem componentItem = new ComponentItem(setup, prefabGridItem, this, component.Name, (int)component.Level);
+                ComponentItem componentItem = new ComponentItem(setup, prefabGridItem, this, component);
 
                 _components.Add(componentItem);
             }
-            SetTextValue(setup, _components[0]);
+
+            SelectComponent(_components.First());
         }
 
-        public void SetTextValue(Setup setup, ComponentItem componentItem)
+        public void SelectComponent(ComponentItem componentItem)
         {
-            _setupNumber.text = $"Computer #{setup.Id}";
+            _setupNumber.text = $"Computer #{componentItem.CurrentSetup.Id + 1}";
             _componentName.text = componentItem.Name;
             _componentLvl.text = $"LVL {componentItem.Level}";
-            _profitMoney.text = componentItem.SelectedComponent.ProfitMoney.ToString();
-            _profitTime.text = componentItem.SelectedComponent.ProfitTime.ToString();
-            _buyWithMoney.text = componentItem.SelectedComponent.Price.ToString();
-            _selectedComponent.sprite = Resources.Load<Sprite>("Images/Upgrade/Components/" + componentItem.Name);
+            _profitMoney.text = componentItem.SetupComponent.ProfitMoney.ToString();
+            _profitTime.text = componentItem.SetupComponent.ProfitTime.ToString();
+            _buyWithMoney.text = componentItem.SetupComponent.Price.ToString();
+            _componentImage.sprite = Resources.Load<Sprite>("Images/Upgrade/Components/" + componentItem.Name);
+
+            componentItem.GridComponentItem.BackgroundImage.sprite = Resources.Load<Sprite>("Images/Upgrade/GridItems/gridItemBackSelected");
+            componentItem.GridComponentItem.IsSelected = true;
         }
-        
-        public void OnCloseBootonClick()
+
+        public void OnClickClose()
         {
             Hide();
-    
-            for(int i = 0; i < _gridComponentsObject.transform.childCount; i++)
-            {
-                Object.Destroy(_gridComponentsObject.transform.GetChild(i).gameObject);
-            }
-
-            foreach (var component in _components)
-            {
-                component.Clear();
-            }
         }
     }
 }

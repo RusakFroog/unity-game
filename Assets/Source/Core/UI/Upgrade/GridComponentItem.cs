@@ -7,11 +7,11 @@ using UnityEngine.UI;
 
 namespace Assets.Source.Core.UI.Upgrade
 {
-    public delegate void OnSelectComponent(string componentName);
+    public delegate void OnSelectComponent();
     
     public class GridComponentItem
     {
-        private static List<GridComponentItem> _allItems = new List<GridComponentItem>();
+        private static List<GridComponentItem> _gridItems = new List<GridComponentItem>();
 
         public readonly TextMeshProUGUI LabelLevel;
         public readonly TextMeshProUGUI LabelName;
@@ -20,7 +20,6 @@ namespace Assets.Source.Core.UI.Upgrade
         public readonly Image BackgroundImage;
 
         public bool IsSelected = false;
-        public bool IsFirstSeen = true;
 
         public OnSelectComponent OnSelectComponent;
         
@@ -34,7 +33,7 @@ namespace Assets.Source.Core.UI.Upgrade
 
             _init(componentLevel, componentName);
 
-            _allItems.Add(this);
+            _gridItems.Add(this);
         }
 
         public void SetLvl(ushort lvl)
@@ -44,22 +43,12 @@ namespace Assets.Source.Core.UI.Upgrade
 
         private void _init(int lvl, string name)
         {
-            if (IsFirstSeen)
-            {
-                GridComponentItem firstItem = _allItems.FirstOrDefault();
-                if (firstItem != null)
-                {
-                    firstItem.IsSelected = true;
-                    firstItem.BackgroundImage.sprite = Resources.Load<Sprite>("Images/Upgrade/GridItems/gridItemBackSelected");
-                    IsFirstSeen = false;
-                }
-            }
             ComponentButton.onClick.AddListener(() => 
             {
                 if (IsSelected)
                     return;
 
-                GridComponentItem previousItem = _allItems.FirstOrDefault(x => x.IsSelected);
+                GridComponentItem previousItem = _gridItems.FirstOrDefault(x => x.IsSelected);
 
                 if (previousItem != null)
                 {
@@ -71,7 +60,7 @@ namespace Assets.Source.Core.UI.Upgrade
 
                 IsSelected = true;
                 
-                OnSelectComponent?.Invoke(name);
+                OnSelectComponent?.Invoke();
             });
 
             LabelName.text = name;
@@ -79,9 +68,10 @@ namespace Assets.Source.Core.UI.Upgrade
 
             SetLvl((ushort)lvl);
         }
-    public void Clear()
-    {
-        _allItems.Clear();
-    }
+
+        public void Clear()
+        {
+            _gridItems.Clear();
+        }
     }
 }
