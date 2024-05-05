@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Assets.Source.Core.Setups.Models;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -52,6 +53,7 @@ namespace Assets.Source.Core.UI.Upgrade
 
                 _components.Add(componentItem);
             }
+            SetTextValue(setup, _components[0]);
         }
 
         public void SetTextValue(Setup setup, ComponentItem componentItem)
@@ -63,6 +65,21 @@ namespace Assets.Source.Core.UI.Upgrade
             _profitTime.text = componentItem.SelectedComponent.ProfitTime.ToString();
             _buyWithMoney.text = componentItem.SelectedComponent.Price.ToString();
             _selectedComponent.sprite = Resources.Load<Sprite>("Images/Upgrade/Components/" + componentItem.Name);
+        }
+        
+        public void OnCloseBootonClick()
+        {
+            Hide();
+    
+            for(int i = 0; i < _gridComponentsObject.transform.childCount; i++)
+            {
+                Object.Destroy(_gridComponentsObject.transform.GetChild(i).gameObject);
+            }
+
+            foreach (var component in _components)
+            {
+                component.Clear();
+            }
         }
     }
 }

@@ -20,6 +20,7 @@ namespace Assets.Source.Core.UI.Upgrade
         public readonly Image BackgroundImage;
 
         public bool IsSelected = false;
+        public bool IsFirstSeen = true;
 
         public OnSelectComponent OnSelectComponent;
         
@@ -43,6 +44,16 @@ namespace Assets.Source.Core.UI.Upgrade
 
         private void _init(int lvl, string name)
         {
+            if (IsFirstSeen)
+            {
+                GridComponentItem firstItem = _allItems.FirstOrDefault();
+                if (firstItem != null)
+                {
+                    firstItem.IsSelected = true;
+                    firstItem.BackgroundImage.sprite = Resources.Load<Sprite>("Images/Upgrade/GridItems/gridItemBackSelected");
+                    IsFirstSeen = false;
+                }
+            }
             ComponentButton.onClick.AddListener(() => 
             {
                 if (IsSelected)
@@ -68,5 +79,9 @@ namespace Assets.Source.Core.UI.Upgrade
 
             SetLvl((ushort)lvl);
         }
+    public void Clear()
+    {
+        _allItems.Clear();
+    }
     }
 }

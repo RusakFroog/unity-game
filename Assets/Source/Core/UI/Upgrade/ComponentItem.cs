@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Assets.Source.Core.Setups.Models;
 using TMPro;
@@ -38,6 +39,8 @@ namespace Assets.Source.Core.UI.Upgrade
             UpgradeUI = upgradeUI;
             _curentSetup = curentSetup;
 
+            SelectedComponent = curentSetup.Components.FirstOrDefault();
+    
             GridComponentItem.OnSelectComponent += OnSelectComponent;
         }
 
@@ -72,6 +75,11 @@ namespace Assets.Source.Core.UI.Upgrade
             SelectedComponent = component;
 
             UpgradeUI.SetTextValue(_curentSetup, this);
+        }
+
+        public void Clear()
+        {
+            GridComponentItem.Clear();
         }
     }
 }
