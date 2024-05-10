@@ -53,7 +53,7 @@ namespace Assets.Source.Core.Features
             {
                 Debug.LogError("_screen not found");
 
-                throw new NullReferenceException("_sscreen not found");
+                throw new NullReferenceException("_screen not found");
             }
 
             _screen.GetComponent<MeshRenderer>().material.mainTexture = Resources.Load<Texture>(texturePath);
