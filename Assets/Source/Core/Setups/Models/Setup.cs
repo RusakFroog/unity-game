@@ -1,4 +1,5 @@
 ﻿using Assets.Source.Core.Interactions;
+using Assets.Source.Core.Peds;
 using Assets.Source.Core.Setups.Models.Components;
 using Assets.Source.Core.Setups.Models.Enums;
 using System;
@@ -82,14 +83,6 @@ namespace Assets.Source.Core.Setups.Models
 
             if (property != null && property.PropertyType.IsAssignableFrom(instance.GetType()))
                 property.SetValue(this, instance);
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.CompareTag("Player"))
-            {
-
-            }
         }
 
         public void ChangeComponent(Components.Component component, ComponentLevel level)

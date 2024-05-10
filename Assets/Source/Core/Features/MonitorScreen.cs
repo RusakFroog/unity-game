@@ -13,12 +13,9 @@ namespace Assets.Source.Core.Features
     {
         private static List<string> _textures = new List<string>()
         {
-            "Textures/Gameplays/gameplay1",
-            "Textures/Gameplays/gameplay2",
-            "Textures/Gameplays/gameplay3",
-            "Textures/Gameplays/gameplay4",
-            "Textures/Gameplays/gameplay5",
-            "Textures/Gameplays/gameplay6",
+            "Textures/Gameplay/Materials/gameplay1",
+            "Textures/Gameplay/Materials/gameplay2",
+            "Textures/Gameplay/Materials/gameplay3",
         };
 
         [SerializeField]
@@ -30,8 +27,18 @@ namespace Assets.Source.Core.Features
             {
                 _screen = transform.Find("Screen").gameObject;
             }
+        }
 
+        public void StartChanging()
+        {
             StartCoroutine(_startGamePlay());
+        }
+
+        public void StopChanging()
+        {
+            StopCoroutine(_startGamePlay());
+
+            _changeTexture("Textures/Gameplay/Materials/defaultScreen");
         }
 
         private IEnumerator _startGamePlay()
@@ -41,7 +48,7 @@ namespace Assets.Source.Core.Features
                 _changeTexture(_textures[i]);
 
                 if (i == _textures.Count - 1)
-                    i = 0;
+                    i = -1;
 
                 yield return new WaitForSeconds(5f);
             }
@@ -50,13 +57,9 @@ namespace Assets.Source.Core.Features
         private void _changeTexture(string texturePath)
         {
             if (_screen == null)
-            {
-                Debug.LogError("_screen not found");
-
                 throw new NullReferenceException("_screen not found");
-            }
 
-            _screen.GetComponent<MeshRenderer>().material.mainTexture = Resources.Load<Texture>(texturePath);
+            _screen.GetComponent<MeshRenderer>().material = Resources.Load<Material>(texturePath);
         }
     }
 }
