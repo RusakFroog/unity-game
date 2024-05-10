@@ -32,8 +32,8 @@ namespace Assets.Source.Core.Setups.Models
         {
             _initComponents();
 
-            //Monitor.Change(ComponentLevel.Lvl2);
-            Monitor.Change(ComponentLevel.Lvl1);
+            Monitor.Change(ComponentLevel.Lvl2);
+            Monitor.Change(ComponentLevel.Lvl3);
 
             //Table.Change(ComponentLevel.Lvl2);
             Table.Change(ComponentLevel.Lvl1);

@@ -50,7 +50,7 @@ namespace Assets.Source.Core.Setups.Models.Components
         };
         
         public GameObject GameObject { get; set; } = null;
-        public ComponentLevel Level { get; set; } = ComponentLevel.Lvl1;
+        public ComponentLevel Level { get; private set; } = ComponentLevel.Lvl1;
         public Vector3 Position { get; private set; } = new Vector3(0, 0, 0);
         public Quaternion Rotation { get; private set; } = new Quaternion(0, 0, 0, 0);
         public int ProfitMoney { get; private set; } = 0;
@@ -71,9 +71,7 @@ namespace Assets.Source.Core.Setups.Models.Components
         
         public void SetLocalPosition(Vector3 position)
         {
-            Position = position;
-
-            GameObject.transform.SetLocalPositionAndRotation(Position, Rotation);
+            GameObject.transform.SetLocalPositionAndRotation(position, Rotation);
         }
 
         public void SetPosition(Vector3 position)
