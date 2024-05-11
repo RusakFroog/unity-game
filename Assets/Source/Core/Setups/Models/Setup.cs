@@ -26,7 +26,7 @@ namespace Assets.Source.Core.Setups.Models
         public Mouse Mouse { get; private set; }
         public Keyboard Keyboard { get; private set; }
         public Chair Chair { get; private set; }
-
+        public Ped SeatingPed { get; private set; }
         public Interaction Interaction { get; set; }
 
         private void Awake()
@@ -83,6 +83,27 @@ namespace Assets.Source.Core.Setups.Models
 
             if (property != null && property.PropertyType.IsAssignableFrom(instance.GetType()))
                 property.SetValue(this, instance);
+        }
+
+        public void TakeSeat(Ped ped)
+        {
+            if (SeatingPed == null)
+                return;
+
+            SeatingPed = ped;
+
+            Vector3 offset = new Vector3(0, 0.5f, 0.5f);
+            
+            ped.Position = new Vector3(Chair.Position.x, Chair.Position.y, Chair.Position.z) + offset;
+            ped.Animator.SetBool("IsSeating", true);
+            ped.Animator.SetBool("IsWalking", false);
+
+            ped.GameObject.SetActive(false);
+
+            GameObject pedObject = UnityEngine.Object.Instantiate(ped.GameObject, offset, new Quaternion(0, 0, 0, 0), Chair.GameObject.transform);
+
+            pedObject.name = "SeatedPed";
+            pedObject.AddComponent<Animator>();
         }
 
         public void ChangeComponent(Components.Component component, ComponentLevel level)
