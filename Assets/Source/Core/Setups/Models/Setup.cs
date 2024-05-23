@@ -27,7 +27,7 @@ namespace Assets.Source.Core.Setups.Models
         public Mouse Mouse { get; private set; }
         public Keyboard Keyboard { get; private set; }
         public Chair Chair { get; private set; }
-        public Ped SeatingPed { get; private set; }
+
         public Interaction Interaction { get; set; }
 
         private void Awake()
