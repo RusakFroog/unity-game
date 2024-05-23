@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a62aea441023645b8983326d92ae8108,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.28
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a62aea441023645b8983326d92ae8108,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.28
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a62aea441023645b8983326d92ae8108,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.28
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a62aea441023645b8983326d92ae8108,
         type: 3}
@@ -81,6 +81,11 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a62aea441023645b8983326d92ae8108,
         type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a62aea441023645b8983326d92ae8108,
+        type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7985974569186381559, guid: a62aea441023645b8983326d92ae8108,
@@ -162,9 +167,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1.7681808
-  m_Height: 12.062467
+  m_Height: 12.144139
   m_Direction: 1
-  m_Center: {x: 0, y: 6.160418, z: 0.09122161}
+  m_Center: {x: 0, y: 6.119582, z: 0.09122161}
 --- !u!114 &3608669077207672323
 MonoBehaviour:
   m_ObjectHideFlags: 0

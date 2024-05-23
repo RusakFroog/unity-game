@@ -20,9 +20,6 @@ namespace Assets.Source.Core.Peds
         {
             GameObject = Object.Instantiate(Resources.Load<GameObject>("Prefabs/Peds/Ped"));
 
-            if (position.y != -0.34f)
-                position = new Vector3(position.x, -0.34f, position.z);
-
             Position = position;
 
             Collider = GameObject.GetComponent<CapsuleCollider>();
