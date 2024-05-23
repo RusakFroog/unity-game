@@ -21,6 +21,8 @@ namespace Assets.Source.Core.Features
         [SerializeField]
         private GameObject _screen = null;
 
+        private Coroutine _startGamePlayCoroutine;
+
         public void Awake()
         {
             if (_screen == null)
@@ -31,12 +33,13 @@ namespace Assets.Source.Core.Features
 
         public void StartChanging()
         {
-            StartCoroutine(_startGamePlay());
+            _startGamePlayCoroutine = StartCoroutine(_startGamePlay());
         }
 
         public void StopChanging()
         {
-            StopCoroutine(_startGamePlay());
+            if (_startGamePlayCoroutine != null)
+                StopCoroutine(_startGamePlayCoroutine);
 
             _changeTexture("Textures/Gameplay/Materials/defaultScreen");
         }

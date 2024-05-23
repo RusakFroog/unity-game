@@ -1,4 +1,5 @@
-﻿using Assets.Source.Core.Interactions;
+﻿using Assets.Source.Core.Features;
+using Assets.Source.Core.Interactions;
 using Assets.Source.Core.Peds;
 using Assets.Source.Core.Setups.Models.Components;
 using Assets.Source.Core.Setups.Models.Enums;
@@ -33,8 +34,8 @@ namespace Assets.Source.Core.Setups.Models
         {
             _initComponents();
 
-            Monitor.Change(ComponentLevel.Lvl2);
-            Monitor.Change(ComponentLevel.Lvl3);
+            //Monitor.Change(ComponentLevel.Lvl2);
+            Monitor.Change(ComponentLevel.Lvl1);
 
             //Table.Change(ComponentLevel.Lvl2);
             Table.Change(ComponentLevel.Lvl1);
@@ -90,11 +91,13 @@ namespace Assets.Source.Core.Setups.Models
             if (SeatingPed == null)
                 return;
 
+            Monitor.GameObject.GetComponent<MonitorScreen>().StartChanging();
+
             SeatingPed = ped;
 
             Vector3 offset = new Vector3(0, 0.5f, 0.5f);
             
-            ped.Position = new Vector3(Chair.Position.x, Chair.Position.y, Chair.Position.z) + offset;
+            //ped.Position = new Vector3(Chair.Position.x, Chair.Position.y, Chair.Position.z) + offset;
             ped.Animator.SetBool("IsSeating", true);
             ped.Animator.SetBool("IsWalking", false);
 

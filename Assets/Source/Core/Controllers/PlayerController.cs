@@ -25,11 +25,8 @@ namespace Assets.Source.Core.Controllers
 
             _rigidbody = _player.GetComponent<Rigidbody>();
             _animator = _player.GetComponent<Animator>();
-        }
 
-        private void Update()
-        {
-            _movePlayer();
+            GlobalUpdate.AddUpdate(() => _movePlayer());
         }
 
         private void _movePlayer()

@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System.ComponentModel;
 
 namespace Assets.Source.Core.Setups.Models.Components
 {
@@ -10,6 +11,8 @@ namespace Assets.Source.Core.Setups.Models.Components
         public readonly Setup Setup;
 
         public abstract string Name { get; }
+        
+        protected virtual System.Action _onChange { get; }
 
         protected abstract Dictionary<ComponentLevel, Vector3> _positions { get; }
 
@@ -111,6 +114,8 @@ namespace Assets.Source.Core.Setups.Models.Components
 
             Position = _positions.GetValueOrDefault(Level, Position);
             GameObject = Object.Instantiate(Resources.Load<GameObject>(pathPrefab), Position, Rotation, Setup.transform);
+
+            _onChange?.Invoke();
 
             SetLocalPosition(Position);
         }
