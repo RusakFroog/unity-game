@@ -26,19 +26,19 @@ namespace Assets.Source.Core.UI.HUD
             string suffix;
             double dividedNum;
 
-            if (Math.Abs(amount) >= 1_000_000_000)
+            if (amount >= 1_000_000_000)
             {
-                dividedNum = amount / 1_000_000_000;
+                dividedNum = amount / 1_000_000_000f;
                 suffix = "B";
             }
-            else if (Math.Abs(amount) >= 1_000_000)
+            else if (amount >= 1_000_000)
             {
-                dividedNum = amount / 1_000_000;
+                dividedNum = amount / 1_000_000f;
                 suffix = "M";
             }
-            else if (Math.Abs(amount) >= 1_000)
+            else if (amount >= 1_000)
             {
-                dividedNum = amount / 1_000;
+                dividedNum = amount / 1_000f;
                 suffix = "K";
             }
             else
