@@ -1,5 +1,6 @@
 ﻿using Assets.Source.Core.Features;
 using Assets.Source.Core.Interactions;
+using Assets.Source.Core.MoneySystem;
 using Assets.Source.Core.Peds;
 using Assets.Source.Core.Setups.Models.Components;
 using Assets.Source.Core.Setups.Models.Enums;
@@ -136,6 +137,9 @@ namespace Assets.Source.Core.Setups.Models
         
         public void ChangeComponent(Components.Component component, ComponentLevel level)
         {
+            if (!MoneySystem.Wallet.Change(-component.UpgradePrice))
+                return;
+            
             component.Change(level);
         }
     }
