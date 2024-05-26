@@ -46,6 +46,8 @@ namespace Assets.Source.Core.Setups.Models
             Keyboard.Change(ComponentLevel.Lvl1);
             Chair.Change(ComponentLevel.Lvl1);
 
+            Wallet.Change(1200000);
+
             Setups.Add(_lastId, this);
             
             _lastId++;

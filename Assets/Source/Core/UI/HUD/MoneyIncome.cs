@@ -23,8 +23,32 @@ namespace Assets.Source.Core.UI.HUD
 
         private string _getFormattedAmount(int amount)
         {
-            // TODO: make forrmating like: 1,34 K | 22,3 KK
-            return $"{amount}";
+            string suffix;
+            double dividedNum;
+
+            if (Math.Abs(amount) >= 1_000_000_000)
+            {
+                dividedNum = amount / 1_000_000_000;
+                suffix = "B";
+            }
+            else if (Math.Abs(amount) >= 1_000_000)
+            {
+                dividedNum = amount / 1_000_000;
+                suffix = "M";
+            }
+            else if (Math.Abs(amount) >= 1_000)
+            {
+                dividedNum = amount / 1_000;
+                suffix = "K";
+            }
+            else
+            {
+                return amount.ToString();
+            }
+
+            string formattedNum = dividedNum.ToString("0.##");
+
+            return $"{formattedNum}{suffix}";
         }
     }
 }
