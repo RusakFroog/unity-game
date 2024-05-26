@@ -43,7 +43,7 @@ namespace Assets.Source.Core.Setups.Models
             Pc.Change(ComponentLevel.Lvl1);
             Mouse.Change(ComponentLevel.Lvl1);
             Keyboard.Change(ComponentLevel.Lvl1);
-            Chair.Change(ComponentLevel.Lvl7);
+            Chair.Change(ComponentLevel.Lvl1);
 
             Setups.Add(_lastId, this);
             
@@ -98,7 +98,7 @@ namespace Assets.Source.Core.Setups.Models
             ped.GameObject.SetActive(false);
 
             var transformChair = Chair.GameObject.transform;
-            var offset = new Vector3(0, 0.3f, 0);
+            var offset = new Vector3(0, 0.1f, 0);
             
             if (Chair.Level == ComponentLevel.Lvl8)
             {
@@ -136,16 +136,7 @@ namespace Assets.Source.Core.Setups.Models
         
         public void ChangeComponent(Components.Component component, ComponentLevel level)
         {
-            if (SeatingPed != null)
-            {
-                TakeOffSeat();
-                return; 
-            }
             component.Change(level);
-            
-            var ped = new Ped(Position);
-            
-            TakeSeat(ped);
         }
     }
 }
