@@ -136,6 +136,14 @@ namespace Assets.Source.Core.Setups.Models
             
             Monitor.GameObject.GetComponent<MonitorScreen>().StopChanging();
         }
+
+        public void NeedHelp()
+        {
+            if (SeatingPed == null)
+                return;
+            
+            Chair.SeatingPed.GetComponent<Animator>().SetBool("IsNeedhelp", true);
+        }
         
         public void ChangeComponent(Components.Component component, ComponentLevel level)
         {
